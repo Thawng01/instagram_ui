@@ -7,10 +7,8 @@ import CommentInput from "../components/comments/CommentInput";
 import CommentBody from "../components/comments/CommentBody";
 import PostOwner from "../components/comments/PostOwner";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
 
 const Comment = () => {
-    const ref = useRef();
     const navigate = useNavigate();
 
     const handleCommentClose = (e) => {

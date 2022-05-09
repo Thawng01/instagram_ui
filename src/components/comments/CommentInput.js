@@ -3,7 +3,7 @@ import styled from "styled-components";
 const CommentInput = () => {
     return (
         <Container>
-            <img src="/logo.png" id="user-img" />
+            <img src="/logo.png" id="user-img" alt="user-img" />
 
             <InputContainer>
                 <Input placeholder="Add a comment" />
