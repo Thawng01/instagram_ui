@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 import { device } from "../../breakpoints";
 
-const Caption = ({ value, onChange }) => {
+const Caption = ({ value, onChange, username, profile }) => {
     return (
         <Container>
             <div className="user-info">
-                <img src="/logo.png" alt="user" />
-                <p>Lian cung</p>
+                <img src={profile} alt="user" />
+                <p>{username}</p>
             </div>
 
             <InputContainer>

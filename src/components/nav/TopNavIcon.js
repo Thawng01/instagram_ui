@@ -48,6 +48,9 @@ const TopNavIcon = ({ onNewPost }) => {
 
             case "profile":
                 return setShowTooltip(!showTooltip);
+
+            default:
+                return navigate("/");
         }
     };
 

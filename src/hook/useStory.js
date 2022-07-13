@@ -21,7 +21,7 @@ const useStory = (userId) => {
     const getStories = useCallback(async () => {
         const story = await fetchStory(userId);
         setStories(story.data);
-    }, []);
+    }, [userId, setStories]);
 
     useEffect(() => {
         if (userId) {

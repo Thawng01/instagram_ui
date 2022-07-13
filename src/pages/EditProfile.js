@@ -7,23 +7,28 @@ import Header from "../components/Header";
 import useUser from "../hook/useUser";
 import { device } from "../breakpoints";
 import ErrorBoundary from "../components/errors/ErrorBoundary";
+import Loading from "../components/Loadings/Loading";
+import { LoadingContainer } from "../components/editprofile/styles";
 
 const EditProfile = () => {
-    const { user } = useUser();
+    const { user, loading } = useUser();
 
     return (
         <>
             <Header />
 
-            <Container>
-                <ErrorBoundary>
-                    <Side />
-                </ErrorBoundary>
-
-                <ErrorBoundary>
-                    <Content user={user} />
-                </ErrorBoundary>
-            </Container>
+            {loading ? (
+                <LoadingContainer>
+                    <Loading height={35} width={35} />
+                </LoadingContainer>
+            ) : (
+                <Container>
+                    <ErrorBoundary>
+                        <Side />
+                        <Content user={user} />
+                    </ErrorBoundary>
+                </Container>
+            )}
         </>
     );
 };

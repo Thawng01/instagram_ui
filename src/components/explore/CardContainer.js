@@ -15,7 +15,7 @@ const CardContainer = () => {
 
     useEffect(() => {
         if (id) request(id);
-    }, [id]);
+    }, [id, request]);
 
     if (loading) return <Loading height={30} width={30} />;
 

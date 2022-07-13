@@ -12,7 +12,7 @@ const Post = () => {
 
     useEffect(() => {
         if (state) request(state);
-    }, [state]);
+    }, [state, request]);
 
     let content;
 

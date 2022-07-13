@@ -31,7 +31,7 @@ const Post = () => {
         if (postId) {
             postApi.request(postId);
         }
-    }, [postId]);
+    }, [postId, postApi]);
 
     useEffect(() => {
         const index = state.findIndex((item) => item._id === postId);

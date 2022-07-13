@@ -13,7 +13,7 @@ const WithSubscription = (WrapConponent, fetchData) => {
             if (state) {
                 request(state);
             }
-        }, [state]);
+        }, [state, request]);
 
         return <WrapConponent loading={loading} data={data} />;
     };

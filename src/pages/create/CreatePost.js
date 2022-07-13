@@ -60,7 +60,7 @@ const CreatePost = () => {
                     {images.map((img) => {
                         return (
                             <ImageContainer key={img.id}>
-                                <img src={img.img} />
+                                <img src={img.img} alt="" />
                                 <CloseIconContainer
                                     onClick={() => handleRemoveImage(img.id)}
                                 >

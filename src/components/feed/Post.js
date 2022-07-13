@@ -15,7 +15,7 @@ const Post = () => {
 
     useEffect(() => {
         postApi.request();
-    }, []);
+    }, [postApi]);
 
     let content;
 

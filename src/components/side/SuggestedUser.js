@@ -20,7 +20,7 @@ const SuggestedUser = () => {
         if (id) {
             userApi.request(id, 5);
         }
-    }, [id]);
+    }, [id, userApi]);
 
     return (
         <Container>

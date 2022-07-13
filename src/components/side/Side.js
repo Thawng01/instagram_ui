@@ -6,6 +6,7 @@ import SuggestedUser from "./SuggestedUser";
 import useUser from "../../hook/useUser";
 import { device } from "../../breakpoints";
 import ErrorBoundary from "../errors/ErrorBoundary";
+import Loading from "../Loadings/Loading";
 
 const items = [
     "About",
@@ -22,20 +23,24 @@ const items = [
 ];
 
 const Side = () => {
-    const { user } = useUser();
+    const { user, loading } = useUser();
 
     return (
         <Container>
             <ErrorBoundary>
-                <UserImage
-                    avatar={user?.profileImg}
-                    username={user?.username}
-                    fullname={user?.fullname}
-                    id={user?._id}
-                    width={55}
-                    height={55}
-                    profile
-                />
+                {loading ? (
+                    <Loading height={30} width={30} />
+                ) : (
+                    <UserImage
+                        avatar={user?.profileImg}
+                        username={user?.username}
+                        fullname={user?.fullname}
+                        id={user?._id}
+                        width={55}
+                        height={55}
+                        profile
+                    />
+                )}
             </ErrorBoundary>
 
             <ErrorBoundary>

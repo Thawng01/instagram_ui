@@ -14,7 +14,7 @@ const SearchResult = ({ value }) => {
 
     useEffect(() => {
         request(id, value);
-    }, [id, value]);
+    }, [id, value, request]);
 
     if (loading)
         return (

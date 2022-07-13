@@ -65,6 +65,7 @@ const Details = () => {
                                 key={image.id}
                                 src={image.img}
                                 id="selected-img"
+                                alt=""
                             />
                         );
                     })}

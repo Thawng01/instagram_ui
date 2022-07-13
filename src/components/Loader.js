@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Loader = () => {
     return (
         <Container>
-            <img src="./icon.png" style={{ width: 90, height: 90 }} />
+            <img src="./icon.png" style={{ width: 90, height: 90 }} alt="" />
         </Container>
     );
 };

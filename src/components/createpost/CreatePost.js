@@ -10,6 +10,7 @@ import Error from "../errors/Error";
 import { createPost } from "../../api/post";
 import useToken from "../../hook/useToken";
 import useApi from "../../hook/useApi";
+import useUser from "../../hook/useUser";
 import ModalBox from "../commons/ModalBox";
 
 const CreatePost = ({ newPost, onClose }) => {
@@ -19,6 +20,7 @@ const CreatePost = ({ newPost, onClose }) => {
     const [visible, setVisible] = useState(false);
 
     const id = useToken();
+    const { user } = useUser();
     const ref = useRef();
     const postApi = useApi(createPost);
 
@@ -35,6 +37,7 @@ const CreatePost = ({ newPost, onClose }) => {
         if (next) {
             const post = { user: id, caption, images };
             const result = await postApi.request(post);
+            console.log(result);
             if (result.status === 200) {
                 setImages([]);
                 setCaption("");
@@ -100,6 +103,8 @@ const CreatePost = ({ newPost, onClose }) => {
                         <Caption
                             value={caption}
                             onChange={handleCaptionChange}
+                            username={user?.username}
+                            profile={user?.profileImg}
                         />
                     )}
                 </Content>

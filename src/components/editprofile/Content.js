@@ -111,7 +111,7 @@ const Content = ({ user }) => {
     };
 
     useEffect(() => {
-        if (message) setTimeout(() => setMessage(null), 4000);
+        if (message) setTimeout(() => setMessage(null), 3000);
     }, [message, setMessage]);
 
     return (

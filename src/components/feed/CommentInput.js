@@ -37,7 +37,6 @@ const CommentInput = ({ postId }) => {
             likes: [],
             comment,
             postId,
-            comment,
             parentId: "",
             user: { profileImg: user.profileImg, username: user.username },
         };

@@ -89,5 +89,3 @@ const Icon = styled.div`
     color: #fff;
     cursor: pointer;
 `;
-
-const Box = styled.div``;

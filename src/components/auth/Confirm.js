@@ -22,7 +22,7 @@ const Confirm = () => {
 
     useEffect(() => {
         request(state.id);
-    }, [state.id]);
+    }, [state.id, request]);
 
     return (
         <Wrapper>

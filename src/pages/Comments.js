@@ -11,6 +11,8 @@ import NavBottom from "../components/nav/NavBottom";
 import useUser from "../hook/useUser";
 import useComment from "../hook/useComment";
 import ErrorBoundary from "../components/errors/ErrorBoundary";
+import Loading from "../components/Loadings/Loading";
+import { LoadingContainer } from "../components/editprofile/styles";
 
 const Comments = () => {
     const [reply, setReply] = useState(null);
@@ -20,7 +22,7 @@ const Comments = () => {
     // post info (user detail) are passed through state
     const { state } = useLocation();
 
-    const { user } = useUser();
+    const { user, loading } = useUser();
     const { id: postId } = useParams();
     const { data } = useComment(postId);
 
@@ -41,35 +43,43 @@ const Comments = () => {
             <Container id="comment-container" onClick={handleCommentClose}>
                 <IoClose id="comment-close" onClick={handleBack} />
                 <CommentBox>
-                    <CommentHeader>
-                        <IoChevronBack
-                            className="back-icon"
-                            onClick={handleBack}
-                        />
-                        <p>Comments</p>
-                    </CommentHeader>
-                    <CommentInput
-                        img={user?.profileImg}
-                        userId={user?._id}
-                        reply={reply}
-                        onCancelReply={() => setReply(null)}
-                    />
-                    <div className="body-container">
-                        <PostOwner user={state} />
-                        {rootComments?.map((comment, i) => (
-                            <Comment
-                                key={i}
-                                comment={comment}
-                                onReply={() =>
-                                    setReply({
-                                        comId: comment._id,
-                                        username: comment.user.username,
-                                    })
-                                }
-                                replies={getReplies(comment._id)}
+                    {loading ? (
+                        <LoadingContainer>
+                            <Loading height={40} width={40} />
+                        </LoadingContainer>
+                    ) : (
+                        <>
+                            <CommentHeader>
+                                <IoChevronBack
+                                    className="back-icon"
+                                    onClick={handleBack}
+                                />
+                                <p>Comments</p>
+                            </CommentHeader>
+                            <CommentInput
+                                img={user?.profileImg}
+                                userId={user?._id}
+                                reply={reply}
+                                onCancelReply={() => setReply(null)}
                             />
-                        ))}
-                    </div>
+                            <div className="body-container">
+                                <PostOwner user={state} />
+                                {rootComments?.map((comment, i) => (
+                                    <Comment
+                                        key={i}
+                                        comment={comment}
+                                        onReply={() =>
+                                            setReply({
+                                                comId: comment._id,
+                                                username: comment.user.username,
+                                            })
+                                        }
+                                        replies={getReplies(comment._id)}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    )}
                     <NavBottom />
                 </CommentBox>
             </Container>
@@ -115,6 +125,7 @@ const CommentBox = styled.div`
     width: 100%;
     height: 100%;
     overflow: hidden;
+    position: relative;
 
     .body-container {
         width: 100%;

@@ -18,7 +18,7 @@ const Saved = () => {
         if (id) {
             request(id);
         }
-    }, [id]);
+    }, [id, request]);
 
     if (loading)
         return (

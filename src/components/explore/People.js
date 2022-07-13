@@ -17,7 +17,7 @@ const People = () => {
         if (id) {
             userApi.request(id, 20);
         }
-    }, [id]);
+    }, [id, userApi]);
 
     return (
         <>

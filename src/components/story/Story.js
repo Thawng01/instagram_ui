@@ -35,8 +35,8 @@ const Story = () => {
     const ref = useRef();
 
     const id = useToken();
-    const { user } = useUser();
-    const { stories, loading, error } = useStory(id);
+    const { user, loading } = useUser();
+    const storyApi = useStory(id);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -73,7 +73,7 @@ const Story = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, [handleResize]);
 
-    if (loading) {
+    if (storyApi?.loading) {
         return (
             <LoadingContainer>
                 <Loading height={20} width={20} />;
@@ -81,7 +81,7 @@ const Story = () => {
         );
     }
 
-    if (error) return <Error error={error} />;
+    if (storyApi?.error) return <Error error={storyApi.error} />;
 
     return (
         <Container>
@@ -89,14 +89,20 @@ const Story = () => {
             <InnerContainer ref={ref}>
                 <NewStory onClick={() => setVisible(true)}>
                     <NewStoryImage>
-                        <img src={user.profileImg} alt="new story" />
+                        {loading ? (
+                            <LoadingContainer>
+                                <Loading height={30} width={30} />
+                            </LoadingContainer>
+                        ) : (
+                            <img src={user.profileImg} alt="new story" />
+                        )}
                         <IconContainer>
                             <AiOutlinePlus id="plus-icon" />
                         </IconContainer>
                     </NewStoryImage>
                     <p>Yourstory</p>
                 </NewStory>
-                {stories?.map((story, i) => (
+                {storyApi?.stories?.map((story, i) => (
                     <StoryItem
                         key={story._id}
                         onClick={() =>
@@ -105,7 +111,7 @@ const Story = () => {
                                     " ",
                                     ""
                                 )}/${story._id}`,
-                                { state: stories }
+                                { state: storyApi.stories }
                             )
                         }
                     >
@@ -127,7 +133,7 @@ const Story = () => {
                 </Prev>
             )}
 
-            {scrollIndex + containerWidth < stories?.length * 95 && (
+            {scrollIndex + containerWidth < storyApi?.stories?.length * 95 && (
                 <Next onClick={() => handleScroll(+1)}>
                     <IoChevronForward className="btn-icon" />
                 </Next>

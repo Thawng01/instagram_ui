@@ -39,7 +39,7 @@ const BirthDay = () => {
         if (data && !error) {
             navigate("/register/confirm", { state: data });
         }
-    }, [data]);
+    }, [data, error, navigate]);
 
     const handleSubmit = async () => {
         await request(state.id, { year, month, day });
