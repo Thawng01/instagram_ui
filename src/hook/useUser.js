@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import useToken from "./useToken";
 import { fetchUser } from "../api/user";
-import { useCallback } from "react";
 
 const useUser = () => {
     const [user, setUser] = useState("");
@@ -25,7 +24,7 @@ const useUser = () => {
             }
         }
         if (id) getUser();
-    }, [id, , setError, setLoading, setUser]);
+    }, [id, setError, setLoading, setUser]);
 
     return { user, error, loading };
 };
