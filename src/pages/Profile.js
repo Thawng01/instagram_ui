@@ -1,17 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+
 import Footer from "../components/commons/Footer";
-import Header from "../components/profile/Header";
 import PostList from "../components/profile/PostList";
 import { device } from "../breakpoints";
+import ProfileHeader from "../components/profile/ProfileHeader";
+import Header from "../components/Header";
+import ErrorBoundary from "../components/errors/ErrorBoundary";
 
 const Profile = () => {
     return (
-        <Container>
+        <>
             <Header />
-            <PostList />
-            <Footer />
-        </Container>
+            <Container>
+                <ErrorBoundary>
+                    <ProfileHeader />
+                </ErrorBoundary>
+
+                <ErrorBoundary>
+                    <PostList />
+                </ErrorBoundary>
+
+                <ErrorBoundary>
+                    <Footer />
+                </ErrorBoundary>
+            </Container>
+        </>
     );
 };
 

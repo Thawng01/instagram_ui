@@ -1,30 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { IoEllipsisVertical } from "react-icons/io5";
+import { IoEllipsisHorizontal } from "react-icons/io5";
 
-const UserImage = ({ height = 40, width = 40, profile, suggestedUser }) => {
+import Modal from "../feed/Modal";
+import { useNavigate } from "react-router-dom";
+
+const UserImage = ({
+    height = 40,
+    width = 40,
+    profile,
+    suggestedUser,
+    info,
+    avatar,
+    id,
+    username,
+    fullname,
+}) => {
+    const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = () => setShowModal(!showModal);
+
+    const navigate = useNavigate();
+
     return (
-        <Container>
-            <UserInfoContainer>
-                <Image
-                    src="/logo.png"
-                    style={{ width, height }}
-                    alt="account-image"
-                />
+        <>
+            <Modal
+                visible={showModal}
+                onHide={() => setShowModal(false)}
+                userId={id}
+                postId={info?._id}
+                image={info?.image}
+                caption={info?.caption}
+            />
+            <Container>
+                <UserInfoContainer>
+                    <Image
+                        src={avatar}
+                        style={{ width, height }}
+                        alt="account-image"
+                    />
 
-                <UsernameContainer>
-                    <Username>Lian Cung</Username>
-                    {profile && <Nickname>Lian Cung</Nickname>}
-                </UsernameContainer>
-            </UserInfoContainer>
-            {profile ? (
-                <Switch>Switch</Switch>
-            ) : suggestedUser ? (
-                <Switch>follow</Switch>
-            ) : (
-                <IoEllipsisVertical />
-            )}
-        </Container>
+                    <UsernameContainer>
+                        <Username
+                            onClick={() => navigate("/profile/", { state: id })}
+                        >
+                            {username}
+                        </Username>
+                        {profile && <Nickname>{fullname}</Nickname>}
+                    </UsernameContainer>
+                </UserInfoContainer>
+                {profile ? (
+                    <Switch>Switch</Switch>
+                ) : suggestedUser ? null : (
+                    <IoEllipsisHorizontal id="dots" onClick={handleShowModal} />
+                )}
+            </Container>
+        </>
     );
 };
 
@@ -34,6 +65,10 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    #dots {
+        cursor: pointer;
+    }
 `;
 
 const UserInfoContainer = styled.div`
@@ -51,11 +86,14 @@ const UsernameContainer = styled.div`
 
 const Username = styled.p`
     font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font);
 `;
 
 const Nickname = styled.p`
     color: gray;
     margin-top: 3px;
+    font-family: var(--font);
 `;
 
 const Switch = styled.p`
@@ -64,4 +102,5 @@ const Switch = styled.p`
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
         "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-size: 13px;
+    cursor: pointer;
 `;

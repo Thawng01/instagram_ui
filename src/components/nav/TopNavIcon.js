@@ -1,34 +1,107 @@
 import React, { useState } from "react";
-import { AiOutlineCompass } from "react-icons/ai";
-import { FiSend, FiPlusSquare } from "react-icons/fi";
-import { IoHomeOutline, IoHeartOutline } from "react-icons/io5";
 import styled from "styled-components";
+import { RiSendPlaneFill, RiSendPlaneLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+import {
+    AiOutlineCompass,
+    AiFillCompass,
+    AiFillPlusSquare,
+    AiOutlinePlusSquare,
+} from "react-icons/ai";
+import {
+    IoHomeOutline,
+    IoHome,
+    IoHeartOutline,
+    IoHeart,
+} from "react-icons/io5";
+
 import Tooltip from "../profile/Tooltip";
 import ActivityTooltip from "../activity/ActivityTooltip";
+import useUser from "../../hook/useUser";
 
 const TopNavIcon = ({ onNewPost }) => {
     const [showTooltip, setShowTooltip] = useState(false);
     const [showActivity, setShowActivity] = useState(false);
+    const [clicked, setClicked] = useState("home");
 
-    const toggleTooltip = () => setShowTooltip(!showTooltip);
-    const toggleActivity = () => setShowActivity(!showActivity);
+    const navigate = useNavigate();
+
+    const { user } = useUser();
+
+    const handleNavigation = (type) => {
+        setClicked(type);
+        switch (type) {
+            case "home":
+                return navigate("/");
+
+            case "indox":
+                return;
+
+            case "plus":
+                return onNewPost();
+
+            case "compass":
+                return navigate("/explore/");
+
+            case "heart":
+                return setShowActivity(!showActivity);
+
+            case "profile":
+                return setShowTooltip(!showTooltip);
+        }
+    };
 
     return (
         <NavItemContainer>
-            <div className="home-container">
-                <IoHomeOutline className="nav-icon" />
+            <div
+                className="home-container"
+                onClick={() => handleNavigation("home")}
+            >
+                {clicked === "home" ? (
+                    <IoHome id="nav-icon" />
+                ) : (
+                    <IoHomeOutline id="nav-icon" />
+                )}
             </div>
-            <div className="send-container">
-                <FiSend className="nav-icon" />
+            <div
+                className="send-container"
+                onClick={() => handleNavigation("indox")}
+            >
+                {clicked === "indox" ? (
+                    <RiSendPlaneFill id="nav-icon" />
+                ) : (
+                    <RiSendPlaneLine id="nav-icon" />
+                )}
             </div>
-            <div className="plus-container">
-                <FiPlusSquare className="nav-icon" onClick={onNewPost} />
+            <div
+                className="plus-container"
+                onClick={() => handleNavigation("plus")}
+            >
+                {clicked === "plus" ? (
+                    <AiFillPlusSquare id="nav-icon" />
+                ) : (
+                    <AiOutlinePlusSquare id="nav-icon" />
+                )}
             </div>
-            <div className="comp-container">
-                <AiOutlineCompass className="nav-icon" />
+            <div
+                className="comp-container"
+                onClick={() => handleNavigation("compass")}
+            >
+                {clicked === "compass" ? (
+                    <AiFillCompass id="nav-icon" />
+                ) : (
+                    <AiOutlineCompass id="nav-icon" />
+                )}
             </div>
-            <div className="heart-container">
-                <IoHeartOutline className="nav-icon" onClick={toggleActivity} />
+            <div
+                className="heart-container"
+                onClick={() => handleNavigation("heart")}
+            >
+                {clicked === "heart" ? (
+                    <IoHeart id="nav-icon" />
+                ) : (
+                    <IoHeartOutline id="nav-icon" />
+                )}
                 <ActivityTooltip
                     visible={showActivity}
                     onClose={() => setShowActivity(false)}
@@ -36,10 +109,10 @@ const TopNavIcon = ({ onNewPost }) => {
             </div>
             <div className="img-container">
                 <img
-                    src="/logo.png"
+                    src={user?.profileImg}
                     id="account-img"
                     alt="account"
-                    onClick={toggleTooltip}
+                    onClick={() => handleNavigation("profile")}
                 />
                 <Tooltip
                     visible={showTooltip}
@@ -68,7 +141,7 @@ const NavItemContainer = styled.div`
         align-items: center;
     }
 
-    .nav-icon {
+    #nav-icon {
         height: 23px;
         width: 23px;
         cursor: pointer;

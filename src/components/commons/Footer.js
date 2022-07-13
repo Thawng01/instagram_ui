@@ -24,7 +24,7 @@ const Footer = () => {
         <Container>
             <ItemContainer>
                 {items.map((item) => (
-                    <Link>{item}</Link>
+                    <Link key={item}>{item}</Link>
                 ))}
             </ItemContainer>
             <p>

@@ -1,24 +1,41 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { IoSearch } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../../breakpoints";
 
-const SearchHeader = () => {
-    const [click, setClick] = useState(false);
+const SearchHeader = ({ value, onChange }) => {
+    const [isFocused, setIsFocused] = useState(false);
 
-    const handleFocus = () => setClick(true);
-    const handleBlur = () => setClick(false);
+    const navigate = useNavigate();
+    const ref = useRef();
+
+    const handleFocus = () => {
+        setIsFocused(true);
+        ref.current.focus();
+        navigate("search/");
+    };
+    const handleBlur = () => {
+        navigate("/explore/");
+        setIsFocused(false);
+    };
 
     return (
         <Container>
-            <InputContainer>
+            <InputContainer onClick={handleFocus}>
                 <IoSearch className="search-icon" />
+
                 <Input
+                    ref={ref}
+                    value={value}
+                    isFocused={isFocused}
                     placeholder="Search"
+                    onChange={onChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                 />
             </InputContainer>
-            {click && <Cancel>Cancel</Cancel>}
+            {isFocused && <Cancel>Cancel</Cancel>}
         </Container>
     );
 };
@@ -29,6 +46,10 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     width: 95%;
+
+    @media ${device.laptop} {
+        display: none;
+    }
 `;
 
 const InputContainer = styled.div`
@@ -37,18 +58,19 @@ const InputContainer = styled.div`
     justify-content: center;
     width: 100%;
     border: 0.5px solid lightgray;
-    padding: 7px;
     border-radius: 5px;
+    position: relative;
 
     .search-icon {
         color: gray;
-        margin-right: 4px;
+        margin: 0 4px 0 8px;
     }
 `;
 
 const Input = styled.input`
-    width: 100%;
     border: none;
+    width: ${(prop) => (prop.isFocused ? "100%" : "60px")};
+    padding: 7px;
 
     &:focus {
         outline: none;

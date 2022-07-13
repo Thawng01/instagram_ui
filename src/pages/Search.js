@@ -1,20 +1,12 @@
 import styled from "styled-components";
+
 import { device } from "../breakpoints";
 import SearchResult from "../components/search/SearchResult";
 
-const Search = () => {
+const Search = ({ value }) => {
     return (
         <Container>
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
+            <SearchResult value={value} />
         </Container>
     );
 };
@@ -22,7 +14,7 @@ const Search = () => {
 export default Search;
 
 const Container = styled.div`
-    margin: 80px auto auto auto;
+    margin: auto;
     width: 100%;
 
     @media ${device.tabletL} {

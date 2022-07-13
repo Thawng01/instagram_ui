@@ -15,6 +15,7 @@ const SelectImage = forwardRef(({ onSelect, onChange }, ref) => {
             <input
                 ref={ref}
                 type="file"
+                name="images"
                 style={{ display: "none" }}
                 onChange={onChange}
             />

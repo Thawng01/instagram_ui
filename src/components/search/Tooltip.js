@@ -1,16 +1,21 @@
 // for header search
 
 import styled from "styled-components";
+import Overlay from "../commons/Overlay";
+
 import SearchResult from "./SearchResult";
 
-const Tooltip = ({ visible }) => {
+const Tooltip = ({ visible, value, onClose }) => {
     if (!visible) return null;
     return (
-        <Container>
-            <InnerContainer>
-                <SearchResult />
-            </InnerContainer>
-        </Container>
+        <>
+            <Overlay visible={visible} onClose={onClose} />
+            <Container>
+                <InnerContainer>
+                    <SearchResult value={value} />
+                </InnerContainer>
+            </Container>
+        </>
     );
 };
 
@@ -25,6 +30,8 @@ const Container = styled.div`
     height: 350px;
     border-radius: 4px;
     box-shadow: 0px 1px 7px 1px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+    z-index: 99;
 
     &::after {
         content: "";

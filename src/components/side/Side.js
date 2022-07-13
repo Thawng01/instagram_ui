@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 import UserImage from "../commons/UserImage";
 import SuggestedUser from "./SuggestedUser";
+import useUser from "../../hook/useUser";
 import { device } from "../../breakpoints";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const items = [
     "About",
@@ -20,28 +22,48 @@ const items = [
 ];
 
 const Side = () => {
+    const { user } = useUser();
+
     return (
         <Container>
-            <UserImage width={55} height={55} profile />
-            <SuggestedUser />
-            <FooterContainer>
-                <Item>
-                    {items.map((item, i) => {
-                        return (
-                            <div key={i} className="item-one-container">
-                                <span className="item">{item}</span>
-                                {items.length - 1 !== i && (
-                                    <span className="dot" />
-                                )}
-                            </div>
-                        );
-                    })}
-                </Item>
-                <CompanyName>
-                    <span>&copy; </span>
-                    <span className="company-name">INSTAGRAM FROM META</span>
-                </CompanyName>
-            </FooterContainer>
+            <ErrorBoundary>
+                <UserImage
+                    avatar={user?.profileImg}
+                    username={user?.username}
+                    fullname={user?.fullname}
+                    id={user?._id}
+                    width={55}
+                    height={55}
+                    profile
+                />
+            </ErrorBoundary>
+
+            <ErrorBoundary>
+                <SuggestedUser />
+            </ErrorBoundary>
+
+            <ErrorBoundary>
+                <FooterContainer>
+                    <Item>
+                        {items.map((item, i) => {
+                            return (
+                                <div key={i} className="item-one-container">
+                                    <span className="item-one">{item}</span>
+                                    {items.length - 1 !== i && (
+                                        <span className="dot" />
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </Item>
+                    <CompanyName>
+                        <span>&copy; </span>
+                        <span className="company-name">
+                            INSTAGRAM FROM META
+                        </span>
+                    </CompanyName>
+                </FooterContainer>
+            </ErrorBoundary>
         </Container>
     );
 };
@@ -75,7 +97,7 @@ const Item = styled.div`
         line-height: 20px;
     }
 
-    .item {
+    .item-one {
         color: gray;
         font-size: 13px;
     }

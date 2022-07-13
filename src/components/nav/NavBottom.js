@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import styled from "styled-components";
 import { FiPlusSquare } from "react-icons/fi";
 import {
@@ -9,48 +8,59 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { device } from "../../breakpoints";
-
-const BottomNav = [
-    {
-        id: 1,
-        icon: <IoHomeOutline style={{ height: 23, width: 23 }} />,
-        path: "/",
-    },
-    {
-        id: 2,
-        icon: <IoSearchOutline style={{ height: 23, width: 23 }} />,
-        path: "/",
-    },
-    {
-        id: 3,
-        icon: <FiPlusSquare style={{ height: 23, width: 23 }} />,
-        path: "/",
-    },
-    {
-        id: 4,
-        icon: <IoHeartOutline style={{ height: 23, width: 23 }} />,
-        path: "/",
-    },
-];
+import useUser from "../../hook/useUser";
 
 const NavBottom = () => {
     const navigate = useNavigate();
 
-    const handleNavigation = () => {
-        navigate("/profile");
+    const { user } = useUser();
+
+    const BottomNav = [
+        {
+            id: 1,
+            icon: <IoHomeOutline style={{ height: 23, width: 23 }} />,
+            path: "/",
+        },
+        {
+            id: 2,
+            icon: <IoSearchOutline style={{ height: 23, width: 23 }} />,
+            path: "/explore",
+        },
+        {
+            id: 3,
+            icon: <FiPlusSquare style={{ height: 23, width: 23 }} />,
+            path: "/create",
+        },
+        {
+            id: 4,
+            icon: <IoHeartOutline style={{ height: 23, width: 23 }} />,
+            path: "/",
+        },
+        {
+            id: 5,
+            icon: <img src={user?.profileImg} alt="account" id="account-img" />,
+            path: "/profile",
+        },
+    ];
+
+    const handleNavigation = (path) => {
+        navigate(path);
     };
+
     return (
         <Container>
             <NavItemContainer>
                 {BottomNav.map((item) => {
-                    return <Fragment key={item.id}>{item.icon}</Fragment>;
+                    return (
+                        <div
+                            id="items-container"
+                            key={item.id}
+                            onClick={() => handleNavigation(item.path)}
+                        >
+                            {item.icon}
+                        </div>
+                    );
                 })}
-                <img
-                    src="/logo.png"
-                    alt="account"
-                    id="account-img"
-                    onClick={handleNavigation}
-                />
             </NavItemContainer>
         </Container>
     );
@@ -69,6 +79,7 @@ const Container = styled.div`
     background-color: #fff;
     height: 50px;
     border-top: 0.2px solid lightgray;
+    z-index: 99;
 
     @media ${device.laptop} {
         display: none;
@@ -80,6 +91,11 @@ const NavItemContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
+    #items-container {
+        display: flex;
+        align-items: center;
+    }
 
     #account-img {
         height: 25px;

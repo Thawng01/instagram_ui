@@ -1,18 +1,54 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 
-const SearchResult = () => {
+import { searchUser } from "../../api/user";
+import useApi from "../../hook/useApi";
+import useToken from "../../hook/useToken";
+import UserListLoading from "../Loadings/UserListLoading";
+import { useNavigate } from "react-router-dom";
+
+const SearchResult = ({ value }) => {
+    const navigate = useNavigate();
+    const id = useToken();
+    const { request, data, loading } = useApi(searchUser);
+
+    useEffect(() => {
+        request(id, value);
+    }, [id, value]);
+
+    if (loading)
+        return (
+            <div style={{ padding: 10 }}>
+                <UserListLoading />
+            </div>
+        );
+
+    if (data?.length === 0)
+        return <p style={{ paddingLeft: 10 }}>No result.</p>;
+
     return (
-        <Container>
-            <Image src="/logo.png" alt="user" />
-            <NameContainer>
-                <Name>Lian cung</Name>
-                <InfoContainer>
-                    <Info>lian cung</Info>
-                    <Dot />
-                    <PostNum>4 posts</PostNum>
-                </InfoContainer>
-            </NameContainer>
-        </Container>
+        <>
+            {data?.map((item) => {
+                return (
+                    <Container
+                        key={item._id}
+                        onClick={() =>
+                            navigate("/profile/", { state: item._id })
+                        }
+                    >
+                        <Image src={item?.profileImg} alt="user" />
+                        <NameContainer>
+                            <Name>{item?.username}</Name>
+                            <InfoContainer>
+                                <Info>{item?.fullname}</Info>
+                                <Dot />
+                                <PostNum>{item?.posts.length} posts</PostNum>
+                            </InfoContainer>
+                        </NameContainer>
+                    </Container>
+                );
+            })}
+        </>
     );
 };
 
@@ -21,13 +57,14 @@ export default SearchResult;
 const Container = styled.div`
     display: flex;
     align-items: center;
-    margin: 12px 0;
+    margin: 15px 0;
+    padding: 0 1rem;
     cursor: pointer;
 `;
 
 const Image = styled.img`
-    height: 55px;
-    width: 55px;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
 `;
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import {
     IoBookmarksOutline,
     IoPersonCircleOutline,
@@ -7,31 +8,50 @@ import {
 } from "react-icons/io5";
 
 import Overlay from "../commons/Overlay";
+import useToken from "../../hook/useToken";
 
 const items = [
     {
         id: 1,
         icon: <IoPersonCircleOutline style={{ width: 19, height: 19 }} />,
         title: "Profile",
+        path: "/profile/",
     },
     {
-        id: 1,
+        id: 2,
         icon: <IoBookmarksOutline style={{ width: 19, height: 19 }} />,
         title: "Saved",
+        path: "/profile/saved",
     },
     {
-        id: 1,
+        id: 3,
         icon: <IoSettingsOutline style={{ width: 19, height: 19 }} />,
         title: "Settings",
+        path: "/accounts/edit",
     },
     {
-        id: 1,
+        id: 4,
         icon: <IoSyncCircleOutline style={{ width: 19, height: 19 }} />,
         title: "Switch accounts",
+        path: "",
     },
 ];
 
 const Tooltip = ({ visible, onClose }) => {
+    const navigate = useNavigate();
+    const id = useToken();
+
+    const handleNavigation = (path) => {
+        navigate(path, { state: id });
+        onClose();
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("x-auth-token");
+        navigate("/login");
+        onClose();
+    };
+
     if (!visible) return null;
     return (
         <>
@@ -39,14 +59,20 @@ const Tooltip = ({ visible, onClose }) => {
             <InnerContainer>
                 {items.map((item) => {
                     return (
-                        <div className="item-container">
+                        <div
+                            key={item.id}
+                            className="item-container"
+                            onClick={() => handleNavigation(item.path)}
+                        >
                             {item.icon}
                             <Title>{item.title}</Title>
                         </div>
                     );
                 })}
 
-                <p id="logout">Log Out</p>
+                <p id="logout" onClick={handleLogout}>
+                    Log Out
+                </p>
             </InnerContainer>
         </>
     );
@@ -77,7 +103,7 @@ const InnerContainer = styled.div`
     .item-container {
         display: flex;
         align-items: center;
-        padding: 9.5px;
+        padding: 9.5px 12px;
 
         &:hover {
             background-color: #f9f9f9;
@@ -85,7 +111,7 @@ const InnerContainer = styled.div`
     }
 
     #logout {
-        padding: 10px 10px 12px 10px;
+        padding: 10px 10px 12px 14px;
         font-size: 14.5px;
         border-top: 0.4px solid lightgray;
 
@@ -93,6 +119,7 @@ const InnerContainer = styled.div`
             background-color: #f9f9f9;
             border-bottom-left-radius: 6px;
             border-bottom-right-radius: 6px;
+            cursor: pointer;
         }
     }
 `;

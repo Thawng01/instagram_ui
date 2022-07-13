@@ -1,21 +1,40 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
-import RowTwo from "../components/explore/RowTwo";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
+
 import { device } from "../breakpoints";
-import RowOne from "../components/explore/RowOne";
-import RowThree from "../components/explore/RowThree";
 import Footer from "../components/commons/Footer";
 import { Flex } from "../styles/Flex.styles";
+import { HeaderContainer } from "../components/header.style";
+import SearchHeader from "../components/search/SearchHeader";
+import CardContainer from "../components/explore/CardContainer";
+import Search from "./Search";
+import NavBottom from "../components/nav/NavBottom";
+import Nav from "../components/nav/Nav";
 
 const Explore = () => {
-    return (
-        <Container>
-            <RowOne />
-            <RowTwo />
-            <RowThree />
+    const [value, setValue] = useState("");
+    const { pathname } = useLocation();
 
-            <Footer />
-        </Container>
+    const handleChange = (e) => setValue(e.target.value);
+
+    return (
+        <>
+            <HeaderContainer>
+                <Nav />
+                <SearchHeader value={value} onChange={handleChange} />
+            </HeaderContainer>
+            <Container>
+                {pathname.includes("search") ? (
+                    <Search value={value} />
+                ) : (
+                    <CardContainer />
+                )}
+                <Footer />
+            </Container>
+            <NavBottom />
+        </>
     );
 };
 
@@ -28,6 +47,6 @@ const Container = styled(Flex)`
     justify-content: space-between;
 
     @media ${device.tabletL} {
-        width: 75%;
+        width: 50rem;
     }
 `;

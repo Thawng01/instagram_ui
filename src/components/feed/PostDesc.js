@@ -1,15 +1,46 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const PostDesc = () => {
+import formatDate from "../commons/formatDate";
+
+const PostDesc = ({
+    likeCount,
+    caption,
+    createdAt,
+    comments,
+    user,
+    postId,
+    single,
+}) => {
+    const navigate = useNavigate();
+
+    const time = formatDate(new Date(createdAt).getTime());
+
+    const handleNavigation = () =>
+        navigate(`/${postId}/comments`, {
+            state: { user, createdAt, caption },
+        });
+
     return (
         <Container>
-            <LikeCount>13,211 likes</LikeCount>
+            {likeCount === 0 ? (
+                <p>
+                    Be the first to <span>like this</span>
+                </p>
+            ) : (
+                <LikeCount>{likeCount} likes</LikeCount>
+            )}
 
-            <Desc>Hello world</Desc>
-            <p className="view-all-comment">View all comments</p>
-            <p className="date">13 hrs ago</p>
+            {!single && (
+                <>
+                    <Desc>{caption}</Desc>
+                    <p className="view-all-comment" onClick={handleNavigation}>
+                        View all <span>{comments?.length}</span> comments
+                    </p>
+                </>
+            )}
+            <p className="date">{time}</p>
         </Container>
     );
 };
@@ -21,19 +52,33 @@ const Container = styled.div`
 
     .view-all-comment {
         color: gray;
+        cursor: pointer;
     }
 
     .date {
         color: gray;
         text-transform: uppercase;
-        font-size: 11.5px;
+        font-size: 12px;
         margin-top: 6px;
+        font-weight: 200;
+    }
+
+    p {
+        color: gray;
+        font-size: 14px;
+        margin-bottom: 8px;
+        font-family: var(--font);
+    }
+
+    span {
+        color: #000;
+        font-weight: 500;
     }
 `;
 
 const LikeCount = styled.p`
     margin-bottom: 9px;
-    font-weight: 600;
+    font-weight: 500;
 `;
 
 const Desc = styled.p`

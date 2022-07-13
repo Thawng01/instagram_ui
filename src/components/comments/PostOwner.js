@@ -1,12 +1,18 @@
 import styled from "styled-components";
+import formatDate from "../commons/formatDate";
 
-const PostOwner = () => {
+const PostOwner = ({ user }) => {
+    const createdAt = formatDate(new Date(user?.createdAt).getTime());
+
     return (
         <Container>
-            <img src="/logo.png" alt="post-owner-img" />
+            <img src={user?.user?.profileImg} alt="post-owner-img" />
             <NameContainer>
-                <p>Lian Cung</p>
-                <span>23hr</span>
+                <p>
+                    {user?.user?.username}{" "}
+                    <span id="caption">{user?.caption}</span>
+                </p>
+                <span id="date">{createdAt}</span>
             </NameContainer>
         </Container>
     );
@@ -33,9 +39,14 @@ const NameContainer = styled.div`
         font-weight: 600;
     }
 
-    span {
-        font-size: 12px;
+    #caption {
+        font-weight: 400;
+    }
+
+    #date {
+        font-size: 11px;
         color: gray;
         margin-top: 9px;
+        font-weight: 300;
     }
 `;
