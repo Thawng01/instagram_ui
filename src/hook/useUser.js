@@ -25,7 +25,7 @@ const useUser = () => {
             }
         }
         if (id) getUser();
-    }, [id, fetchUser, setError, setLoading, setUser]);
+    }, [id, , setError, setLoading, setUser]);
 
     return { user, error, loading };
 };
