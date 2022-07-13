@@ -10,23 +10,22 @@ const useUser = () => {
 
     const id = useToken();
 
-    async function getUser() {
-        setLoading(true);
-        try {
-            const result = await fetchUser(id);
-            setUser(result.data);
-            setLoading(false);
-        } catch (error) {
-            setError(error?.response?.data);
-            setLoading(false);
-        }
-    }
-
     // const fetchAuser = useCallback(async () => await getUser(), [getUser]);
 
     useEffect(() => {
+        async function getUser() {
+            setLoading(true);
+            try {
+                const result = await fetchUser(id);
+                setUser(result.data);
+                setLoading(false);
+            } catch (error) {
+                setError(error?.response?.data);
+                setLoading(false);
+            }
+        }
         if (id) getUser();
-    }, [id, getUser]);
+    }, [id, fetchUser, setError, setLoading, setUser]);
 
     return { user, error, loading };
 };
