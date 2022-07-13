@@ -21,7 +21,7 @@ const useUser = () => {
         }
     }
 
-    const fetchAuser = useCallback(() => getUser(), [getUser]);
+    const fetchAuser = useCallback(async () => await getUser(), []);
 
     useEffect(() => {
         if (id) fetchAuser();

@@ -24,9 +24,7 @@ const useStory = (userId) => {
     }, [userId, setStories]);
 
     useEffect(() => {
-        if (userId) {
-            getStories();
-        }
+        if (userId) getStories();
     }, [userId, getStories]);
 
     if (error) setTimeout(() => setError(null), 3000);
