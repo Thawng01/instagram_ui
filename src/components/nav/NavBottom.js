@@ -44,7 +44,7 @@ const NavBottom = () => {
     ];
 
     const handleNavigation = (path) => {
-        navigate(path);
+        navigate(path, { state: user._id });
     };
 
     return (
