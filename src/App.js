@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import AppRoutes from "./AppRoutes";
 import ErrorBoundary from "./components/errors/ErrorBoundary";
 import Loader from "./components/Loader";

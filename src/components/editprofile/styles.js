@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const InnerContainer = styled.div`
-    padding: 20px 0 20px 20px;
+    padding: 20px 10px;
     width: 100%;
 
     @media ${device.tabletL} {
@@ -63,7 +63,7 @@ export const ProfileContainer = styled.div`
 `;
 
 export const Right = styled.div`
-    width: 85%;
+    width: 100%;
 
     #input-text {
         padding: 9px;
@@ -133,6 +133,7 @@ export const Right = styled.div`
     #disable-acc {
         color: var(--secondary);
         font-weight: 600;
+        font-size: 14px;
     }
 
     #gender {

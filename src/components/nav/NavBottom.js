@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 import { device } from "../../breakpoints";
 import useUser from "../../hook/useUser";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const NavBottom = () => {
     const navigate = useNavigate();
@@ -48,21 +49,23 @@ const NavBottom = () => {
     };
 
     return (
-        <Container>
-            <NavItemContainer>
-                {BottomNav.map((item) => {
-                    return (
-                        <div
-                            id="items-container"
-                            key={item.id}
-                            onClick={() => handleNavigation(item.path)}
-                        >
-                            {item.icon}
-                        </div>
-                    );
-                })}
-            </NavItemContainer>
-        </Container>
+        <ErrorBoundary>
+            <Container>
+                <NavItemContainer>
+                    {BottomNav.map((item) => {
+                        return (
+                            <div
+                                id="items-container"
+                                key={item.id}
+                                onClick={() => handleNavigation(item.path)}
+                            >
+                                {item.icon}
+                            </div>
+                        );
+                    })}
+                </NavItemContainer>
+            </Container>
+        </ErrorBoundary>
     );
 };
 
@@ -77,7 +80,7 @@ const Container = styled.div`
     padding: 0 15px;
     width: 100%;
     background-color: #fff;
-    height: 50px;
+    height: 55px;
     border-top: 0.2px solid lightgray;
     z-index: 99;
 

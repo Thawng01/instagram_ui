@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import { device } from "../../breakpoints";
-import AuthContextProvider from "../context/auth";
 
 const Box = ({ children }) => {
-    return (
-        <AuthContextProvider>
-            <Container>{children}</Container>
-        </AuthContextProvider>
-    );
+    return <Container>{children}</Container>;
 };
 
 export default Box;

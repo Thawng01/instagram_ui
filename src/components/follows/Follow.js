@@ -2,12 +2,13 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import { device } from "../../breakpoints";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const Follow = ({ follwer, following, post, userId }) => {
     const navigate = useNavigate();
 
     return (
-        <>
+        <ErrorBoundary>
             <Centered>
                 <div className="containers">
                     <span className="number">{post?.length}</span>
@@ -29,7 +30,7 @@ const Follow = ({ follwer, following, post, userId }) => {
                     <span>Following</span>
                 </div>
             </Centered>
-        </>
+        </ErrorBoundary>
     );
 };
 

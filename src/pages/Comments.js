@@ -81,8 +81,8 @@ const Comments = () => {
                             </div>
                         </>
                     )}
-                    <NavBottom />
                 </CommentBox>
+                <NavBottom />
             </Container>
         </ErrorBoundary>
     );
@@ -100,7 +100,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 9;
+    z-index: 99;
 
     @media ${device.laptop} {
         height: 100%;

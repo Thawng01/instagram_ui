@@ -1,23 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "../Header";
 import FollowListItem from "../follows/FollowListItem";
 import { fetchSuggestedUser } from "../../api/user";
 import useToken from "../../hook/useToken";
 import UserListLoading from "../Loadings/UserListLoading";
 import Footer from "../commons/Footer";
 import useFetch from "../../hook/useFetch";
-import NavBottom from "../nav/NavBottom";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const People = () => {
     const id = useToken();
     const { data, loading } = useFetch(fetchSuggestedUser, id, 20);
 
     return (
-        <>
-            <Header />
-            <Container>
+        <Container>
+            <ErrorBoundary>
                 <h4>Suggested</h4>
                 <ItemContainer>
                     {loading ? (
@@ -35,10 +33,9 @@ const People = () => {
                         })
                     )}
                 </ItemContainer>
-                <Footer />
-            </Container>
-            <NavBottom />
-        </>
+            </ErrorBoundary>
+            <Footer />
+        </Container>
     );
 };
 

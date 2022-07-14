@@ -139,14 +139,14 @@ const Container = styled.div`
 
     .story-modal-box {
         background-color: #fff;
-        width: 100%;
-        height: calc(100vh - 50px);
+        width: 20rem;
+        height: 22rem;
         margin-bottom: 50px;
+        border-radius: 5px;
 
         @media ${device.xMobile} {
             width: 22rem;
             height: 25rem;
-            border-radius: 5px;
         }
     }
 `;

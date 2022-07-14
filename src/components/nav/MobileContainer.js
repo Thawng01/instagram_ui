@@ -3,11 +3,14 @@ import styled from "styled-components";
 
 import Mobile from "./Mobile";
 import { device } from "../../breakpoints";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const MobileContainer = () => {
     return (
         <Container>
-            <Mobile />
+            <ErrorBoundary>
+                <Mobile />
+            </ErrorBoundary>
         </Container>
     );
 };

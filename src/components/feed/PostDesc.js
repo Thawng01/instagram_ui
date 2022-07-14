@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import formatDate from "../commons/formatDate";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const PostDesc = ({
     likeCount,
@@ -23,25 +24,30 @@ const PostDesc = ({
         });
 
     return (
-        <Container>
-            {likeCount === 0 ? (
-                <p>
-                    Be the first to <span>like this</span>
-                </p>
-            ) : (
-                <LikeCount>{likeCount} likes</LikeCount>
-            )}
-
-            {!single && (
-                <>
-                    <Desc>{caption}</Desc>
-                    <p className="view-all-comment" onClick={handleNavigation}>
-                        View all <span>{comments?.length}</span> comments
+        <ErrorBoundary>
+            <Container>
+                {likeCount === 0 ? (
+                    <p>
+                        Be the first to <span>like this</span>
                     </p>
-                </>
-            )}
-            <p className="date">{time}</p>
-        </Container>
+                ) : (
+                    <LikeCount>{likeCount} likes</LikeCount>
+                )}
+
+                {!single && (
+                    <>
+                        <Desc>{caption}</Desc>
+                        <p
+                            className="view-all-comment"
+                            onClick={handleNavigation}
+                        >
+                            View all <span>{comments?.length}</span> comments
+                        </p>
+                    </>
+                )}
+                <p className="date">{time}</p>
+            </Container>
+        </ErrorBoundary>
     );
 };
 

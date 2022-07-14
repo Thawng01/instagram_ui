@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 import Follow from "../side/Follow";
 
@@ -8,25 +9,29 @@ const FollowListItem = ({ item, people, color }) => {
     const navigate = useNavigate();
 
     return (
-        <ItemContainer>
-            <Left>
-                <Image src={item?.profileImg} />
-                <Text
-                    onClick={() => navigate("/profile/", { state: item._id })}
-                >
-                    <p id="username">{item?.username}</p>
-                    <p id="name">{item?.fullname}</p>
-                </Text>
-            </Left>
-            <Right people={people}>
-                <Follow
-                    follower={item?.follower}
-                    following={item?.following}
-                    userId={item?._id}
-                    color={color}
-                />
-            </Right>
-        </ItemContainer>
+        <ErrorBoundary>
+            <ItemContainer>
+                <Left>
+                    <Image src={item?.profileImg} />
+                    <Text
+                        onClick={() =>
+                            navigate("/profile/", { state: item._id })
+                        }
+                    >
+                        <p id="username">{item?.username}</p>
+                        <p id="name">{item?.fullname}</p>
+                    </Text>
+                </Left>
+                <Right people={people}>
+                    <Follow
+                        follower={item?.follower}
+                        following={item?.following}
+                        userId={item?._id}
+                        color={color}
+                    />
+                </Right>
+            </ItemContainer>
+        </ErrorBoundary>
     );
 };
 

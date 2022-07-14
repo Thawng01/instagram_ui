@@ -3,21 +3,17 @@ import styled from "styled-components";
 
 import Content from "../components/editprofile/Content";
 import Side from "../components/editprofile/Side";
-import Header from "../components/Header";
 import useUser from "../hook/useUser";
 import { device } from "../breakpoints";
 import ErrorBoundary from "../components/errors/ErrorBoundary";
 import Loading from "../components/Loadings/Loading";
 import { LoadingContainer } from "../components/editprofile/styles";
-import NavBottom from "../components/nav/NavBottom";
 
 const EditProfile = () => {
     const { user, loading } = useUser();
 
     return (
         <>
-            <Header />
-
             {loading ? (
                 <LoadingContainer>
                     <Loading height={35} width={35} />
@@ -30,8 +26,6 @@ const EditProfile = () => {
                     </ErrorBoundary>
                 </Container>
             )}
-
-            <NavBottom />
         </>
     );
 };

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -10,7 +10,6 @@ import { HeaderContainer } from "../components/header.style";
 import SearchHeader from "../components/search/SearchHeader";
 import CardContainer from "../components/explore/CardContainer";
 import Search from "./Search";
-import NavBottom from "../components/nav/NavBottom";
 import Nav from "../components/nav/Nav";
 
 const Explore = () => {
@@ -33,7 +32,6 @@ const Explore = () => {
                 )}
                 <Footer />
             </Container>
-            <NavBottom />
         </>
     );
 };

@@ -4,12 +4,13 @@ import { IoBookmarkOutline, IoBookmark } from "react-icons/io5";
 import { FiSend } from "react-icons/fi";
 import { AiOutlineComment } from "react-icons/ai";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 import { Flex } from "../../styles/Flex.styles";
 import useToken from "../../hook/useToken";
 import useApi from "../../hook/useApi";
 import { toggleSavePost, toggleLikePost } from "../../api/post";
-import { useNavigate } from "react-router-dom";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const PostAction = ({ postId, likes, save, onLike, user, createdAt }) => {
     const id = useToken();
@@ -40,37 +41,39 @@ const PostAction = ({ postId, likes, save, onLike, user, createdAt }) => {
     };
 
     return (
-        <Container>
-            <Left>
-                {liked ? (
-                    <IoMdHeart
-                        className="card-action-icon heart"
-                        onClick={handleLikePost}
+        <ErrorBoundary>
+            <Container>
+                <Left>
+                    {liked ? (
+                        <IoMdHeart
+                            className="card-action-icon heart"
+                            onClick={handleLikePost}
+                        />
+                    ) : (
+                        <IoMdHeartEmpty
+                            className="card-action-icon "
+                            onClick={handleLikePost}
+                        />
+                    )}
+                    <AiOutlineComment
+                        className="card-action-icon"
+                        onClick={handleNavigation}
+                    />
+                    <FiSend className="card-action-icon" />
+                </Left>
+                {saved ? (
+                    <IoBookmark
+                        className="card-action-icon"
+                        onClick={handleSavePost}
                     />
                 ) : (
-                    <IoMdHeartEmpty
-                        className="card-action-icon "
-                        onClick={handleLikePost}
+                    <IoBookmarkOutline
+                        className="card-action-icon"
+                        onClick={handleSavePost}
                     />
                 )}
-                <AiOutlineComment
-                    className="card-action-icon"
-                    onClick={handleNavigation}
-                />
-                <FiSend className="card-action-icon" />
-            </Left>
-            {saved ? (
-                <IoBookmark
-                    className="card-action-icon"
-                    onClick={handleSavePost}
-                />
-            ) : (
-                <IoBookmarkOutline
-                    className="card-action-icon"
-                    onClick={handleSavePost}
-                />
-            )}
-        </Container>
+            </Container>
+        </ErrorBoundary>
     );
 };
 

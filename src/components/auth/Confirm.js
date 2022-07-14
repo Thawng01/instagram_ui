@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IoMail } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Button from "./Button";
@@ -10,19 +10,15 @@ import Box from "./Box";
 import ErrorBoundary from "../errors/ErrorBoundary";
 import Wrapper from "./Wrapper";
 import { getCode } from "../../api/user";
-import useApi from "../../hook/useApi";
+import useFetch from "../../hook/useFetch";
 
 const Confirm = () => {
     const [code, setCode] = useState("");
     const { confirm, loading, error } = useAuth();
-    const { request } = useApi(getCode);
+    const { state } = useLocation();
+    useFetch(getCode, state.id);
 
     const navigate = useNavigate();
-    const { state } = useLocation();
-
-    useEffect(() => {
-        request(state.id);
-    }, [state.id, request]);
 
     return (
         <Wrapper>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 import styled from "styled-components";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const PostImage = ({ images }) => {
     const [itemWidth, setItemWidth] = useState(0);
@@ -33,7 +34,7 @@ const PostImage = ({ images }) => {
     };
 
     return (
-        <>
+        <ErrorBoundary>
             <Container>
                 <InnerContainer ref={ref}>
                     {images?.map((img, i) => {
@@ -70,7 +71,7 @@ const PostImage = ({ images }) => {
                     })}
                 </DotContainer>
             )}
-        </>
+        </ErrorBoundary>
     );
 };
 

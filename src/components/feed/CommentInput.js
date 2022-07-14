@@ -10,6 +10,7 @@ import Error from "../errors/Error";
 import { Flex } from "../../styles/Flex.styles";
 import useComment from "../../hook/useComment";
 import socket from "../../service/socket";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 const CommentInput = ({ postId }) => {
     const [comment, setComment] = useState("");
@@ -46,34 +47,42 @@ const CommentInput = ({ postId }) => {
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            {loading && (
-                <LoadingContainer>
-                    <Loading height={25} width={25} />
-                </LoadingContainer>
-            )}
-
-            <Error error={error} />
-            <div className="emoji-container">
-                <FiSmile id="smile-icon" onClick={() => setVisible(!visible)} />
-                {visible && (
-                    <>
-                        <div id="overlay" onClick={() => setVisible(false)} />
-                        <div className="emoji-dropdown">
-                            <EmojiPicker onEmojiClick={handleSelectEmoji} />
-                        </div>
-                    </>
+        <ErrorBoundary>
+            <Form onSubmit={handleSubmit}>
+                {loading && (
+                    <LoadingContainer>
+                        <Loading height={25} width={25} />
+                    </LoadingContainer>
                 )}
-            </div>
-            <Input
-                placeholder="Add a comment..."
-                value={comment}
-                onChange={handleChange}
-            />
-            <Submit comment={comment} type="submit">
-                Post
-            </Submit>
-        </Form>
+
+                <Error error={error} />
+                <div className="emoji-container">
+                    <FiSmile
+                        id="smile-icon"
+                        onClick={() => setVisible(!visible)}
+                    />
+                    {visible && (
+                        <>
+                            <div
+                                id="overlay"
+                                onClick={() => setVisible(false)}
+                            />
+                            <div className="emoji-dropdown">
+                                <EmojiPicker onEmojiClick={handleSelectEmoji} />
+                            </div>
+                        </>
+                    )}
+                </div>
+                <Input
+                    placeholder="Add a comment..."
+                    value={comment}
+                    onChange={handleChange}
+                />
+                <Submit comment={comment} type="submit">
+                    Post
+                </Submit>
+            </Form>
+        </ErrorBoundary>
     );
 };
 

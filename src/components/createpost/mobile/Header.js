@@ -24,7 +24,7 @@ const HeaderContainer = styled.div`
     width: 100%;
     background-color: #fff;
     border-bottom: 0.2px solid #f1f1f1;
-    height: 45px;
+    height: 55px;
     display: flex;
     align-items: center;
     padding: 0 var(--side-margin);
