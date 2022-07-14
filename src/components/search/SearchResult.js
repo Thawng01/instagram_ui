@@ -22,7 +22,7 @@ const SearchResult = ({ value }) => {
     if (data?.length === 0)
         return <p style={{ paddingLeft: 10 }}>No result.</p>;
 
-    if (error) return <Error error={error} />;
+    if (error) return <p>Sorry. Something went wrong.</p>;
 
     return (
         <>
@@ -70,7 +70,11 @@ const NameContainer = styled.div`
     margin-left: 7px;
 `;
 
-const Name = styled.p``;
+const Name = styled.p`
+    font-size: var(--sTSize);
+    font-family: var(--font);
+    font-weight: 500;
+`;
 
 const InfoContainer = styled.div`
     display: flex;
@@ -80,6 +84,8 @@ const InfoContainer = styled.div`
 
 const Info = styled.p`
     color: gray;
+    font-family: var(--font);
+    font-size: 15px;
 `;
 
 const Dot = styled.div`
@@ -92,4 +98,5 @@ const Dot = styled.div`
 
 const PostNum = styled.span`
     color: gray;
+    font-family: var(--font);
 `;

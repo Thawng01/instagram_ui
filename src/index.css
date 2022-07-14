@@ -22,8 +22,9 @@ body {
     Times,
     serif;
 
-    --fontSize: 16px;
-
+    --textSize: 16px;
+     --sTSize: 18px;
+     --TitleSize: 24px;
   --secondary: #0095f6;
   --side-margin: 15px
 }

@@ -18,22 +18,22 @@ const NavBottom = () => {
     const BottomNav = [
         {
             id: 1,
-            icon: <IoHomeOutline style={{ height: 23, width: 23 }} />,
+            icon: <IoHomeOutline style={{ height: 25, width: 25 }} />,
             path: "/",
         },
         {
             id: 2,
-            icon: <IoSearchOutline style={{ height: 23, width: 23 }} />,
+            icon: <IoSearchOutline style={{ height: 25, width: 25 }} />,
             path: "/explore",
         },
         {
             id: 3,
-            icon: <FiPlusSquare style={{ height: 23, width: 23 }} />,
+            icon: <FiPlusSquare style={{ height: 25, width: 25 }} />,
             path: "/create",
         },
         {
             id: 4,
-            icon: <IoHeartOutline style={{ height: 23, width: 23 }} />,
+            icon: <IoHeartOutline style={{ height: 25, width: 25 }} />,
             path: "/",
         },
         {

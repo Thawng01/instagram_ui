@@ -173,7 +173,7 @@ const Top = styled.div`
 
         @media ${device.tabletL} {
             display: block;
-            width: 90px;
+            width: 100px;
         }
     }
 `;
@@ -198,6 +198,7 @@ const ProfileEdit = styled.button`
     border-radius: 3px;
     width: 100%;
     background-color: inherit;
+    font-size: var(--textSize);
 `;
 
 const Bottom = styled.div`

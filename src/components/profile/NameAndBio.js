@@ -18,4 +18,5 @@ const Username = styled.h4`
 `;
 const Bio = styled.span`
     font-family: var(--font);
+    font-size: var(--textSize);
 `;

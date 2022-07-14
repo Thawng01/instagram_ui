@@ -81,7 +81,7 @@ const Container = styled(Flex)`
     margin: 0 12px 12px 12px;
 
     .card-action-icon {
-        font-size: 23px;
+        font-size: 28px;
         margin-right: 10px;
         cursor: pointer;
 

@@ -65,7 +65,7 @@ const Container = styled.div`
 
     p {
         color: gray;
-        font-size: 14px;
+        font-size: var(--textSize);
         margin-bottom: 8px;
         font-family: var(--font);
     }
@@ -83,4 +83,5 @@ const LikeCount = styled.p`
 
 const Desc = styled.p`
     margin-bottom: 5px;
+    font-size: var(--textSize);
 `;

@@ -72,7 +72,7 @@ const ListContainer = styled.div``;
 
 const List = styled.p`
     padding: 15px 25px;
-    font-size: var(--fontSize);
+    font-size: var(--textSize);
     font-family: var(--font);
 
     &:hover {

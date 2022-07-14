@@ -43,6 +43,11 @@ const Centered = styled.div`
     height: 60px;
     margin-bottom: 7px;
 
+    span {
+        font-family: var(--font);
+        font-size: var(--textSize);
+    }
+
     .number {
         font-weight: 700;
         margin-right: 5px;

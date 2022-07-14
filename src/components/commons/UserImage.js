@@ -68,6 +68,7 @@ const Container = styled.div`
 
     #dots {
         cursor: pointer;
+        font-size: 25px;
     }
 `;
 
@@ -86,8 +87,9 @@ const UsernameContainer = styled.div`
 
 const Username = styled.p`
     font-weight: 600;
-    cursor: pointer;
     font-family: var(--font);
+    font-size: var(--sTSize);
+    cursor: pointer;
 `;
 
 const Nickname = styled.p`

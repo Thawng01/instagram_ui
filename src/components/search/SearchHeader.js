@@ -69,8 +69,9 @@ const InputContainer = styled.div`
 
 const Input = styled.input`
     border: none;
-    width: ${(prop) => (prop.isFocused ? "100%" : "60px")};
+    width: ${(prop) => (prop.isFocused ? "100%" : "65px")};
     padding: 7px;
+    font-size: var(--textSize);
 
     &:focus {
         outline: none;

@@ -72,7 +72,7 @@ export const Right = styled.div`
         width: 100%;
         margin-bottom: 10px;
         border: 0.3px solid lightgray;
-        font-size: var(--fontSize);
+        font-size: var(--textSize);
     }
 
     #label-info {
@@ -88,7 +88,7 @@ export const Right = styled.div`
 
     #name {
         font-weight: 600;
-        font-size: var(--fontSize);
+        font-size: var(--sTSize);
     }
 
     #Name {
@@ -99,12 +99,12 @@ export const Right = styled.div`
     #profile-photo {
         color: var(--secondary);
         font-weight: 600;
-        font-size: var(--fontSize);
+        font-size: var(--textSize);
         cursor: pointer;
     }
 
     #personal-info {
-        font-size: 24px;
+        font-size: var(--TitleSize);
         color: gray;
     }
 
@@ -126,13 +126,12 @@ export const Right = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: var(--fontSize);
+        font-size: var(--textSize);
         font-family: var(--font);
     }
 
     #disable-acc {
         color: var(--secondary);
-        font-size: var(--fontSize);
         font-weight: 600;
     }
 
@@ -165,7 +164,7 @@ export const InnerRight = styled.div`
 
     #checkbox-label {
         font-weight: 600;
-        font-size: var(--fontSize);
+        font-size: var(--textSize);
     }
 `;
 

@@ -37,6 +37,7 @@ const NameContainer = styled.div`
     margin-left: 15px;
     p {
         font-weight: 600;
+        font-family: var(--font);
     }
 
     #caption {

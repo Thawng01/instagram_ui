@@ -113,7 +113,7 @@ const Container = styled.div``;
 
 const InnerContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 12px var(--side-margin);
 
     img {
@@ -123,7 +123,7 @@ const InnerContainer = styled.div`
     }
 
     .heart-icon {
-        font-size: 20px;
+        font-size: 28px;
         cursor: pointer;
     }
 
@@ -134,7 +134,7 @@ const InnerContainer = styled.div`
 
 const DetailContainer = styled.div`
     margin-left: var(--side-margin);
-    width: 100%;
+    width: 90%;
 `;
 
 const NameBodyContainer = styled.div`
@@ -144,14 +144,14 @@ const NameBodyContainer = styled.div`
     padding-bottom: 10px;
 
     #commentor-name {
-        font-size: 15px;
+        font-size: var(--textSize);
         font-weight: 600;
         padding-right: 6px;
         font-family: var(--font);
     }
 
     #comment-body {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 300;
         font-family: var(--font);
     }

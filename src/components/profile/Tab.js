@@ -68,7 +68,7 @@ const TabContainer = styled.div`
         text-decoration: none;
 
         .tab-icon {
-            font-size: 14px;
+            font-size: var(--TitleSize);
         }
 
         span {

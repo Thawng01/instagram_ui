@@ -145,8 +145,8 @@ const NavItemContainer = styled.div`
     }
 
     #nav-icon {
-        height: 23px;
-        width: 23px;
+        height: 25px;
+        width: 25px;
         cursor: pointer;
     }
 
