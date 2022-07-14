@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const InnerContainer = styled.div`
-    margin: 20px 0 20px 20px;
+    padding: 20px 0 20px 20px;
     width: 100%;
 
     @media ${device.tabletL} {
@@ -66,17 +66,18 @@ export const Right = styled.div`
     width: 85%;
 
     #input-text {
-        padding: 8px;
+        padding: 9px;
         border-radius: 4px;
         display: block;
         width: 100%;
         margin-bottom: 10px;
         border: 0.3px solid lightgray;
+        font-size: var(--fontSize);
     }
 
     #label-info {
         color: gray;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 400;
     }
 
@@ -87,6 +88,7 @@ export const Right = styled.div`
 
     #name {
         font-weight: 600;
+        font-size: var(--fontSize);
     }
 
     #Name {
@@ -97,12 +99,12 @@ export const Right = styled.div`
     #profile-photo {
         color: var(--secondary);
         font-weight: 600;
-        font-size: 14px;
+        font-size: var(--fontSize);
         cursor: pointer;
     }
 
     #personal-info {
-        font-size: 17px;
+        font-size: 24px;
         color: gray;
     }
 
@@ -124,18 +126,21 @@ export const Right = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: var(--fontSize);
+        font-family: var(--font);
     }
 
     #disable-acc {
         color: var(--secondary);
-        font-size: 14px;
+        font-size: var(--fontSize);
         font-weight: 600;
     }
 
     #gender {
         color: gray;
+        font-family: var(--font);
         border: 0.5px solid lightgray;
-        padding: 5px 8px;
+        padding: 9px;
         border-radius: 5px;
     }
 
@@ -160,7 +165,7 @@ export const InnerRight = styled.div`
 
     #checkbox-label {
         font-weight: 600;
-        font-size: 14px;
+        font-size: var(--fontSize);
     }
 `;
 

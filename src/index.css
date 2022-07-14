@@ -22,6 +22,8 @@ body {
     Times,
     serif;
 
+    --fontSize: 16px;
+
   --secondary: #0095f6;
   --side-margin: 15px
 }

@@ -72,6 +72,8 @@ const ListContainer = styled.div``;
 
 const List = styled.p`
     padding: 15px 25px;
+    font-size: var(--fontSize);
+    font-family: var(--font);
 
     &:hover {
         background-color: #f9f9f9;
@@ -92,7 +94,7 @@ const AccountCenter = styled.div`
 
     p {
         color: gray;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 300;
     }
 `;

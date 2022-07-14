@@ -187,8 +187,7 @@ const Content = ({ user }) => {
                             />
                             <span id="label-info">
                                 In most cases, you'll be able to change your
-                                username back to salailiancungthawng for another
-                                14 days.
+                                username back to {username} for another 14 days.
                                 <span id="change-name">Learn More</span>
                             </span>
                         </Right>
