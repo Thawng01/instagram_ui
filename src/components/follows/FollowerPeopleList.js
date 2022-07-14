@@ -4,7 +4,6 @@ import styled from "styled-components";
 import UserListLoading from "../Loadings/UserListLoading";
 import FollowListItem from "./FollowListItem";
 import { fetchFollower } from "../../api/follow";
-import WithSubscription from "../HOC/HOC";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hook/useFetch";
 
@@ -29,7 +28,7 @@ const FollowerPeopleList = () => {
     return <Container>{content}</Container>;
 };
 
-export default WithSubscription(FollowerPeopleList, fetchFollower);
+export default FollowerPeopleList;
 const Container = styled.div`
     overflow: auto;
     height: calc(420px - 85px);
