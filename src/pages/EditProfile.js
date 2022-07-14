@@ -9,6 +9,7 @@ import { device } from "../breakpoints";
 import ErrorBoundary from "../components/errors/ErrorBoundary";
 import Loading from "../components/Loadings/Loading";
 import { LoadingContainer } from "../components/editprofile/styles";
+import NavBottom from "../components/nav/NavBottom";
 
 const EditProfile = () => {
     const { user, loading } = useUser();
@@ -29,6 +30,8 @@ const EditProfile = () => {
                     </ErrorBoundary>
                 </Container>
             )}
+
+            <NavBottom />
         </>
     );
 };
@@ -38,12 +41,12 @@ export default EditProfile;
 const Container = styled.div`
     width: 100%;
     background-color: #fff;
-    border: 0.2px solid lightgray;
     margin: 90px auto 25px auto;
     border-radius: 4px;
     display: flex;
 
     @media ${device.tabletL} {
+        border: 0.2px solid lightgray;
         width: 75%;
     }
 `;
