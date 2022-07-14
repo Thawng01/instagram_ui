@@ -14,7 +14,17 @@ const Post = () => {
     let content;
 
     if (loading) {
-        content = <Loading width={30} height={30} />;
+        content = (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                }}
+            >
+                <Loading width={30} height={30} />
+            </div>
+        );
     } else if (error) {
         content = <p>Sorry, something failed.</p>;
     } else if (data?.length > 0) {
@@ -33,6 +43,7 @@ export default Post;
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
+    padding: 0 10px;
     p {
         color: gray;
         font-family: var(--font);

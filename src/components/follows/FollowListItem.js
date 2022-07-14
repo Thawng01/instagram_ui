@@ -54,12 +54,12 @@ const Text = styled.div`
     cursor: pointer;
 
     #username {
-        font-size: 14px;
+        font-size: var(--textSize);
         font-weight: 600;
     }
 
     #name {
-        font-size: 15px;
+        font-size: 14px;
         color: gray;
     }
 `;

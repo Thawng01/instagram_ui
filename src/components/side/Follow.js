@@ -36,10 +36,9 @@ export default Follow;
 const Container = styled.div`
     #follow {
         color: ${(prop) => (prop.color ? prop.color : "#27a2db")};
-        font-weight: 600;
-        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-            "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-        font-size: 13px;
+        font-weight: 500;
+        font-family: var(--font);
+        font-size: var(--textSize);
         cursor: pointer;
     }
 `;
