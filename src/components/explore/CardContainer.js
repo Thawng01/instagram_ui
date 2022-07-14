@@ -1,26 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import { fetchUsers } from "../../api/user";
-import useApi from "../../hook/useApi";
 import useToken from "../../hook/useToken";
 import { device } from "../../breakpoints";
 import Loading from "../Loadings/Loading";
+import useFetch from "../../hook/useFetch";
+import Error from "../errors/Error";
 
 const CardContainer = () => {
     const navigate = useNavigate();
-    const { request, data, loading } = useApi(fetchUsers);
     const id = useToken();
-
-    useEffect(() => {
-        if (id) request(id);
-    }, [id, request]);
+    const { data, loading, error } = useFetch(fetchUsers, id);
 
     if (loading) return <Loading height={30} width={30} />;
 
     return (
         <Container>
+            <Error error={error} />
             {data?.map((item) => {
                 return (
                     <Item

@@ -1,20 +1,16 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { searchUser } from "../../api/user";
-import useApi from "../../hook/useApi";
 import useToken from "../../hook/useToken";
 import UserListLoading from "../Loadings/UserListLoading";
-import { useNavigate } from "react-router-dom";
+import useFetch from "../../hook/useFetch";
+import Error from "../errors/Error";
 
 const SearchResult = ({ value }) => {
     const navigate = useNavigate();
     const id = useToken();
-    const { request, data, loading } = useApi(searchUser);
-
-    useEffect(() => {
-        request(id, value);
-    }, [id, value, request]);
+    const { error, data, loading } = useFetch(searchUser, id, value);
 
     if (loading)
         return (
@@ -25,6 +21,8 @@ const SearchResult = ({ value }) => {
 
     if (data?.length === 0)
         return <p style={{ paddingLeft: 10 }}>No result.</p>;
+
+    if (error) return <Error error={error} />;
 
     return (
         <>

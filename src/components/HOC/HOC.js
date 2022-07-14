@@ -1,21 +1,28 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
-import useApi from "../../hook/useApi";
-
-const WithSubscription = (WrapConponent, fetchData) => {
+const WithSubscription = (WrapConponent, fetchData, id) => {
     const NewComponent = () => {
-        const { state } = useLocation();
-
-        const { loading, data, request } = useApi(fetchData);
+        const [data, setData] = useState();
+        const [error, setError] = useState(null);
+        const [loading, setLoading] = useState(false);
 
         useEffect(() => {
-            if (state) {
-                request(state);
-            }
-        }, [state, request]);
+            const getData = async () => {
+                setLoading(true);
+                try {
+                    const result = await fetchData(id);
+                    setData(result.data);
+                    setLoading(false);
+                } catch (error) {
+                    setError(error.response.data);
+                    setLoading(false);
+                }
+            };
 
-        return <WrapConponent loading={loading} data={data} />;
+            getData();
+        }, [id]);
+
+        return <WrapConponent loading={loading} data={data} error={error} />;
     };
 
     return NewComponent;

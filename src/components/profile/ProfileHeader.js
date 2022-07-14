@@ -1,18 +1,24 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { device } from "../../breakpoints";
 import Follow from "../follows/Follow";
 import NameAndBio from "./NameAndBio";
 import { fetchUser } from "../../api/user";
 import Loading from "../Loadings/Loading";
-import WithSubscription from "../HOC/HOC";
+import useFetch from "../../hook/useFetch";
+import Tooltip from "./Tooltip";
 
-const ProfileHeader = ({ data, loading }) => {
+const ProfileHeader = () => {
+    const [visible, setVisible] = useState(false);
+
     const navigate = useNavigate();
-
     const editProfile = () => navigate("/accounts/edit");
+
+    const { state } = useLocation();
+    const { data, loading } = useFetch(fetchUser, state);
 
     if (loading)
         return (
@@ -40,7 +46,16 @@ const ProfileHeader = ({ data, loading }) => {
                         <div className="hide-in-mobile" onClick={editProfile}>
                             <ProfileEdit>Edit profile</ProfileEdit>
                         </div>
-                        <IoSettingsOutline className="setting-icon" />
+                        <div className="setting-icon-container">
+                            <IoSettingsOutline
+                                className="setting-icon"
+                                onClick={() => setVisible(!visible)}
+                            />
+                            <Tooltip
+                                visible={visible}
+                                onClose={() => setVisible(false)}
+                            />
+                        </div>
                     </Top>
                     <div className="show-in-mobile" onClick={editProfile}>
                         <ProfileEdit>Edit profile</ProfileEdit>
@@ -65,7 +80,7 @@ const ProfileHeader = ({ data, loading }) => {
     );
 };
 
-export default WithSubscription(ProfileHeader, fetchUser);
+export default ProfileHeader;
 
 const Container = styled.div`
     display: flex;
@@ -141,6 +156,10 @@ const Top = styled.div`
     align-items: center;
     margin-bottom: 7px;
 
+    .setting-icon-container {
+        position: relative;
+    }
+
     .setting-icon {
         font-size: 25px;
 
@@ -164,6 +183,13 @@ const Name = styled.h2`
     margin-right: 10px;
     font-family: var(--font);
     font-weight: 100;
+    width: 8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    @media ${device.tablet} {
+        width: 15rem;
+    }
 `;
 
 const ProfileEdit = styled.button`

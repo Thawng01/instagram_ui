@@ -1,23 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Header from "../Header";
 import FollowListItem from "../follows/FollowListItem";
 import { fetchSuggestedUser } from "../../api/user";
-import useApi from "../../hook/useApi";
 import useToken from "../../hook/useToken";
 import UserListLoading from "../Loadings/UserListLoading";
 import Footer from "../commons/Footer";
+import useFetch from "../../hook/useFetch";
+import NavBottom from "../nav/NavBottom";
 
 const People = () => {
-    const userApi = useApi(fetchSuggestedUser);
     const id = useToken();
-
-    useEffect(() => {
-        if (id) {
-            userApi.request(id, 20);
-        }
-    }, [id, userApi]);
+    const { data, loading } = useFetch(fetchSuggestedUser, id, 20);
 
     return (
         <>
@@ -25,10 +20,10 @@ const People = () => {
             <Container>
                 <h4>Suggested</h4>
                 <ItemContainer>
-                    {userApi.loading ? (
+                    {loading ? (
                         <UserListLoading />
                     ) : (
-                        userApi.data?.map((item) => {
+                        data?.map((item) => {
                             return (
                                 <FollowListItem
                                     key={item._id}
@@ -42,6 +37,7 @@ const People = () => {
                 </ItemContainer>
                 <Footer />
             </Container>
+            <NavBottom />
         </>
     );
 };
@@ -51,6 +47,7 @@ export default People;
 const Container = styled.div`
     margin: 100px auto;
     width: 550px;
+    padding: 0 2rem;
 
     h4 {
         margin-bottom: 5px;

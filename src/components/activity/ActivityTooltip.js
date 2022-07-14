@@ -7,7 +7,9 @@ const ActivityTooltip = ({ visible, onClose }) => {
         <>
             <Overlay visible={visible} onClose={onClose} />
             <Container>
-                <InnerContainer>activity</InnerContainer>
+                <InnerContainer>
+                    <p>Your activity will appear here.</p>
+                </InnerContainer>
             </Container>
         </>
     );
@@ -41,4 +43,12 @@ const InnerContainer = styled.div`
     height: 100%;
     width: 100%;
     overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        font-family: var(--font);
+        color: gray;
+    }
 `;

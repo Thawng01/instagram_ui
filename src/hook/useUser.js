@@ -9,8 +9,6 @@ const useUser = () => {
 
     const id = useToken();
 
-    // const fetchAuser = useCallback(async () => await getUser(), [getUser]);
-
     useEffect(() => {
         async function getUser() {
             setLoading(true);
@@ -24,7 +22,7 @@ const useUser = () => {
             }
         }
         if (id) getUser();
-    }, [id, setError, setLoading, setUser]);
+    }, [id]);
 
     return { user, error, loading };
 };

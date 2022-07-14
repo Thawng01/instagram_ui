@@ -24,7 +24,7 @@ const Comments = () => {
 
     const { user, loading } = useUser();
     const { id: postId } = useParams();
-    const { data } = useComment(postId);
+    const { comment } = useComment(postId);
 
     const handleCommentClose = (e) => {
         if (e.target.id === "comment-container") {
@@ -34,9 +34,10 @@ const Comments = () => {
 
     const handleBack = () => navigate("/");
 
-    const rootComments = data?.filter((com) => com.parentId === "");
+    const rootComments = comment?.filter((com) => com.parentId === "");
 
-    const getReplies = (comId) => data?.filter((com) => com.parentId === comId);
+    const getReplies = (comId) =>
+        comment?.filter((com) => com.parentId === comId);
 
     return (
         <ErrorBoundary>

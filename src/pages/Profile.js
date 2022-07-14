@@ -7,6 +7,7 @@ import { device } from "../breakpoints";
 import ProfileHeader from "../components/profile/ProfileHeader";
 import Header from "../components/Header";
 import ErrorBoundary from "../components/errors/ErrorBoundary";
+import NavBottom from "../components/nav/NavBottom";
 
 const Profile = () => {
     return (
@@ -25,6 +26,7 @@ const Profile = () => {
                     <Footer />
                 </ErrorBoundary>
             </Container>
+            <NavBottom />
         </>
     );
 };

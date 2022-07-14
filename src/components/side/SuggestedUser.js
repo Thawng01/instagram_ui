@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import { fetchSuggestedUser } from "../../api/user";
-import useApi from "../../hook/useApi";
 import useToken from "../../hook/useToken";
 import UserImage from "../commons/UserImage";
 import Follow from "./Follow";
 import UserListLoading from "../Loadings/UserListLoading";
+import useFetch from "../../hook/useFetch";
+import Error from "../errors/Error";
 
 const SuggestedUser = () => {
-    const userApi = useApi(fetchSuggestedUser);
+    const id = useToken();
+    const { data, loading, error } = useFetch(fetchSuggestedUser, id, 5);
 
     const navigate = useNavigate();
-
-    const id = useToken();
-
-    useEffect(() => {
-        if (id) {
-            userApi.request(id, 5);
-        }
-    }, [id, userApi]);
 
     return (
         <Container>
@@ -32,10 +26,11 @@ const SuggestedUser = () => {
             </SuggestionContainer>
 
             <SuggestedUserContainer>
-                {userApi.loading ? (
+                <Error error={error} />
+                {loading ? (
                     <UserListLoading />
                 ) : (
-                    userApi.data?.map((user) => {
+                    data?.map((user) => {
                         return (
                             <UserImageContainer key={user._id}>
                                 <UserImage

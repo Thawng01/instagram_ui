@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
 
-import useApi from "../../hook/useApi";
+import useFetch from "../../hook/useFetch";
 import { fetchSinglePost } from "../../api/post";
 import UserImage from "../commons/UserImage";
 import PostBottom from "../feed/PostBottom";
@@ -23,15 +23,9 @@ const Post = () => {
     const { state } = useLocation();
     const navigate = useNavigate();
 
-    const { data } = useComment(postId);
+    const { comment } = useComment(postId);
 
-    const postApi = useApi(fetchSinglePost);
-
-    useEffect(() => {
-        if (postId) {
-            postApi.request(postId);
-        }
-    }, [postId, postApi]);
+    const { data, loading } = useFetch(fetchSinglePost, postId);
 
     useEffect(() => {
         const index = state.findIndex((item) => item._id === postId);
@@ -49,9 +43,9 @@ const Post = () => {
         }
     };
 
-    const rootComments = data?.filter((comment) => comment.parentId === "");
+    const rootComments = comment?.filter((comment) => comment.parentId === "");
     const getReplies = (comId) =>
-        data?.filter((comment) => comment.parentId === comId);
+        comment?.filter((comment) => comment.parentId === comId);
 
     return (
         <Container id="post-slide-container" onClick={handleCapturedClick}>
@@ -59,28 +53,28 @@ const Post = () => {
 
             <Box>
                 <LeftItem>
-                    {postApi.loading ? (
+                    {loading ? (
                         <ImageLoading />
                     ) : (
-                        <PostImage images={postApi?.data?.image} />
+                        <PostImage images={data?.image} />
                     )}
                 </LeftItem>
 
                 <RightItem>
-                    {postApi.loading ? (
+                    {loading ? (
                         <SkeletonLoading slide />
                     ) : (
                         <>
                             <div className="header">
                                 <UserImage
-                                    info={postApi?.data}
-                                    avatar={postApi?.data?.user?.profileImg}
-                                    username={postApi?.data?.user?.username}
-                                    id={postApi?.data?.user?._id}
+                                    info={data}
+                                    avatar={data?.user?.profileImg}
+                                    username={data?.user?.username}
+                                    id={data?.user?._id}
                                 />
                             </div>
                             <Centered>
-                                <PostOwner user={postApi.data} />
+                                <PostOwner user={data} />
 
                                 {rootComments?.map((comment) => (
                                     <Comment
@@ -92,10 +86,10 @@ const Post = () => {
                             </Centered>
 
                             <div className="image-container">
-                                <PostImage images={postApi?.data?.image} />
+                                <PostImage images={data?.image} />
                             </div>
                             <div className="bottom">
-                                <PostBottom post={postApi?.data} single />
+                                <PostBottom post={data} single />
                             </div>
                             <div className="comment-input">
                                 <CommentInput postId={postId} />

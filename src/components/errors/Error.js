@@ -17,7 +17,7 @@ const Container = styled.div`
     right: 0;
     margin: auto;
     background-color: red;
-    width: 20%;
+    width: 20rem;
     border-radius: 4px;
     transform: ${(prop) => (prop.error ? "scale(1, 1)" : "scale(0, 0)")};
     opacity: ${(prop) => (prop.error ? 1 : 0)};

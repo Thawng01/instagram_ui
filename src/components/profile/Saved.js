@@ -1,24 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 import useToken from "../../hook/useToken";
-import useApi from "../../hook/useApi";
+import useFetch from "../../hook/useFetch";
 import { fetchSavedPosts } from "../../api/post";
 import PostItem from "./PostItem";
 import Loading from "../Loadings/Loading";
 import Error from "../errors/Error";
-import { useLocation } from "react-router-dom";
 
 const Saved = () => {
     const id = useToken();
-    const { request, data, loading, error } = useApi(fetchSavedPosts);
     const { state } = useLocation();
-
-    useEffect(() => {
-        if (id) {
-            request(id);
-        }
-    }, [id, request]);
+    const { data, loading, error } = useFetch(fetchSavedPosts, state);
 
     if (loading)
         return (
