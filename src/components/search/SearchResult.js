@@ -5,7 +5,6 @@ import { searchUser } from "../../api/user";
 import useToken from "../../hook/useToken";
 import UserListLoading from "../Loadings/UserListLoading";
 import useFetch from "../../hook/useFetch";
-import Error from "../errors/Error";
 
 const SearchResult = ({ value }) => {
     const navigate = useNavigate();

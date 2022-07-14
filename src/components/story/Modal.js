@@ -56,7 +56,6 @@ const Modal = ({ visible, onModalClose }) => {
     const handleSaveStory = async () => {
         const info = { photo: image.file, userId: id };
         const res = await addNewStory(info);
-        console.log(res);
         if (res?.status === 200) {
             setImage("");
             onModalClose();
@@ -168,11 +167,13 @@ const Title = styled.div`
     span {
         font-family: var(--font);
         font-weight: 600;
+        font-size: var(--textSize);
     }
 `;
 
 const Cancel = styled.button`
     font-family: var(--font);
+    font-size: var(--textSize);
     background-color: #fff;
     border: transparent;
     color: red;
@@ -235,4 +236,5 @@ const BtnContainer = styled.div`
 const Button = styled.p`
     font-weight: 400;
     font-family: var(--font);
+    font-size: var(--textSize);
 `;
