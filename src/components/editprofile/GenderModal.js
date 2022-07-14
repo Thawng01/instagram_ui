@@ -72,11 +72,12 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 9;
 `;
 
 const ModalContainer = styled.div`
     background-color: #fff;
-    width: 40%;
+    width: 18rem;
     border-radius: 5px;
 `;
 

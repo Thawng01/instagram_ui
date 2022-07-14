@@ -105,6 +105,7 @@ const CreatePost = ({ newPost, onClose }) => {
                             onChange={handleCaptionChange}
                             username={user?.username}
                             profile={user?.profileImg}
+                            row={12}
                         />
                     )}
                 </Content>

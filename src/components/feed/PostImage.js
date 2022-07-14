@@ -100,8 +100,8 @@ const Image = styled.img`
 `;
 
 const Button = styled.div`
-    height: 22px;
-    width: 22px;
+    height: 25px;
+    width: 25px;
     border-radius: 50%;
     background-color: #fff;
     position: absolute;
@@ -116,11 +116,11 @@ const Button = styled.div`
 `;
 
 const PrevBtn = styled(Button)`
-    left: 0;
+    left: 5px;
 `;
 
 const NextBtn = styled(Button)`
-    right: 0;
+    right: 5px;
 `;
 
 const DotContainer = styled.div`

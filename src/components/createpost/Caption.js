@@ -13,7 +13,7 @@ const Caption = ({ value, onChange, username, profile }) => {
             <InputContainer>
                 <textarea
                     placeholder="Write a caption..."
-                    rows={12}
+                    rows={8}
                     value={value}
                     onChange={onChange}
                 />
@@ -26,7 +26,7 @@ export default Caption;
 
 const Container = styled.div`
     background-color: #fff;
-    width: 40%;
+    width: 100%;
     padding: 15px;
     height: 100%;
     border-left: 0.4px solid lightgray;

@@ -1,8 +1,14 @@
 .edit-post-box {
     background-color: #fff;
-        width: 700px;
+        width: 340px;
         height: 450px;
         border-radius: 8px;
         overflow: hidden;
     
+}
+
+@media screen and (min-width: 750px) {
+    .edit-post-box {
+        width: 700px;
+    }
 }

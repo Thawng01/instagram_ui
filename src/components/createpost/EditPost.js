@@ -7,11 +7,14 @@ import Caption from "./Caption";
 import { editPost } from "../../api/post";
 import useApi from "../../hook/useApi";
 import "./edit-post.css";
+import useUser from "../../hook/useUser";
+import { device } from "../../breakpoints";
 
 const EditPost = ({ visible, onClose, caption, image, postId }) => {
     const [capt, setCapt] = useState(caption);
 
     const postApi = useApi(editPost);
+    const { user } = useUser();
 
     const handleClick = (e) => {
         if (e.target.id === "edit-container") {
@@ -50,7 +53,12 @@ const EditPost = ({ visible, onClose, caption, image, postId }) => {
                     <ImageContainer>
                         <img src={image[0]} alt="post" />
                     </ImageContainer>
-                    <Caption value={capt} onChange={handleCaptionChange} />
+                    <Caption
+                        value={capt}
+                        onChange={handleCaptionChange}
+                        username={user?.username}
+                        profile={user?.profileImg}
+                    />
                 </Content>
             </motion.div>
         </Container>
@@ -107,14 +115,25 @@ const Header = styled.div`
 
 const Content = styled.div`
     display: flex;
+    flex-direction: column;
+
+    @media ${device.tabletL} {
+        flex-direction: row;
+    }
 `;
 
 const ImageContainer = styled.div`
-    width: 60%;
+    width: 100%;
+    height: 200px;
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    @media ${device.tabletL} {
+        width: 60%;
+        height: 70%;
     }
 `;
