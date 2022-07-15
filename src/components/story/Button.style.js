@@ -12,5 +12,6 @@ export const Button = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    box-shadow: 0px 0px 5px 1.5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
 `;
