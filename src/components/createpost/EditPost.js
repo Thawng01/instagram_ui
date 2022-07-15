@@ -16,7 +16,7 @@ const EditPost = ({ visible, onClose, caption, image, postId }) => {
     const [capt, setCapt] = useState(caption);
     const [success, setSuccess] = useState("");
 
-    const { request, loading, error } = useApi(editPost);
+    const { request, loading } = useApi(editPost);
 
     const { user } = useUser();
 
