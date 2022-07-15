@@ -132,7 +132,7 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: 99;
+    z-index: 999;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,13 +140,12 @@ const Container = styled.div`
     .story-modal-box {
         background-color: #fff;
         width: 20rem;
-        height: 22rem;
+        height: 25rem;
         margin-bottom: 50px;
         border-radius: 5px;
 
         @media ${device.xMobile} {
             width: 22rem;
-            height: 25rem;
         }
     }
 `;

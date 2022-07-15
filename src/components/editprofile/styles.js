@@ -133,6 +133,7 @@ export const Right = styled.div`
     #disable-acc {
         color: var(--secondary);
         font-weight: 600;
+        font-family: var(--font);
         font-size: 14px;
     }
 
