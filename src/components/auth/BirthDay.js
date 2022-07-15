@@ -172,6 +172,10 @@ const Container = styled.div`
     #title4 {
         margin: 20px 0;
     }
+
+    p {
+        font-family: var(--font);
+    }
 `;
 
 const DateSelectContainer = styled.div`

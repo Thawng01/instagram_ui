@@ -11,7 +11,7 @@ const LoginForm = () => {
                 alt=""
                 src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
             />
-            <Input title="Sign up" />
+            <Input title="Log in" />
             <Line />
             <div id="fb-container">
                 <Facebook color="#0095f6" background="none" />

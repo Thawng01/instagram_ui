@@ -25,10 +25,10 @@ const Inputs = styled.div`
 
 const Label = styled.label`
     color: gray;
-    font-size: ${(prop) => (prop.value ? "10px" : "14px")};
+    font-size: ${(prop) => (prop.value ? "10px" : "15px")};
     position: absolute;
     top: ${(prop) => (prop.value ? "0px " : "")};
     z-index: 1;
-    padding: 2px 8px;
+    padding: 2px 9px;
     transition: all 150ms ease;
 `;

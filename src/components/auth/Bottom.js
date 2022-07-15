@@ -41,6 +41,10 @@ const SmallBox = styled.div`
         padding-left: 5px;
     }
 
+    span {
+        font-family: var(--font);
+    }
+
     @media ${device.tablet} {
         border: 0.5px solid lightgray;
         background-color: #fff;

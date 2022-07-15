@@ -55,4 +55,9 @@ const Container = styled.div`
         margin-right: 8px;
         font-size: 22px;
     }
+
+    span {
+        font-size: var(--textSize);
+        font-family: var(--font);
+    }
 `;

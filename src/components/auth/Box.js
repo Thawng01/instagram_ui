@@ -40,11 +40,13 @@ const Container = styled.div`
         color: gray;
         text-align: center;
         font-weight: 400;
+        font-family: var(--font);
     }
 
     #term {
         text-align: center;
         color: gray;
         font-size: 13px;
+        font-family: var(--font);
     }
 `;

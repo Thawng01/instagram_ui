@@ -32,6 +32,7 @@ const Container = styled.button`
     background-color: var(--secondary);
     opacity: ${(prop) => (prop.enable ? 1 : 0.3)};
     color: #fff;
+    font-size: var(--textSize);
     position: relative;
 `;
 

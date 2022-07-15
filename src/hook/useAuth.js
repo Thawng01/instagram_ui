@@ -12,27 +12,27 @@ const useAuth = () => {
     const authenticate = async (userInfo, signup) => {
         setLoading(true);
 
-        setTimeout(async () => {
-            try {
-                let result;
-                if (signup) {
-                    result = await register(userInfo);
-                    navigate("/register/birth_date", { state: result.data });
-                } else {
-                    result = await login(userInfo);
-                    console.log(result);
-                    if (!result.data.confirmed) {
-                        return navigate("/login/confirm", {
-                            state: result.data,
-                        });
-                    }
-                    redirect(result);
+        try {
+            let result;
+            if (signup) {
+                result = await register(userInfo);
+                console.log(result);
+
+                navigate("/register/birth_date", { state: result.data });
+            } else {
+                result = await login(userInfo);
+                if (!result.data.confirmed) {
+                    return navigate("/login/confirm", {
+                        state: result.data,
+                    });
                 }
-            } catch (error) {
-                setError(error?.response?.data);
+                redirect(result);
             }
-            setLoading(false);
-        }, 3000);
+        } catch (error) {
+            console.log(error);
+            setError(error?.response?.data);
+        }
+        setLoading(false);
     };
 
     // confirm email by entering 6 digit code sent to the email address provided by a user

@@ -41,10 +41,10 @@ const Input = ({ signup, title }) => {
 
         if (signup) {
             // register new user
-            authenticate({ username, fullname, email, password }, signup);
+            await authenticate({ username, fullname, email, password }, signup);
         } else {
             // login
-            authenticate({ email, password });
+            await authenticate({ email, password });
         }
     };
 
@@ -125,6 +125,7 @@ const Inputs = styled.input.attrs({ type: "email" })`
     bottom: ${(prop) => (prop.value ? "5px" : "")};
     padding: 0px 8px;
     transition: all 150m ease;
+    font-size: var(--textSize);
 
     &:focus {
         outline: none;
