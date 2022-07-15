@@ -27,7 +27,7 @@ const useComment = (postId) => {
         });
 
         return () => socket.off("get-comment");
-    }, []);
+    }, [setSocketComment]);
 
     useEffect(() => {
         if (socketComment) {

@@ -26,6 +26,8 @@ const Comments = () => {
     const { id: postId } = useParams();
     const { comment } = useComment(postId);
 
+    console.log(comment);
+
     const handleCommentClose = (e) => {
         if (e.target.id === "comment-container") {
             navigate("/");

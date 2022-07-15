@@ -113,7 +113,6 @@ const Container = styled.div``;
 
 const InnerContainer = styled.div`
     display: flex;
-    /* justify-content: space-between; */
     padding: 12px var(--side-margin);
 
     img {
