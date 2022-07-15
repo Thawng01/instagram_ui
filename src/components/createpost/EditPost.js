@@ -17,6 +17,7 @@ const EditPost = ({ visible, onClose, caption, image, postId }) => {
     const [success, setSuccess] = useState("");
 
     const { request, loading, error } = useApi(editPost);
+
     const { user } = useUser();
 
     const handleClick = (e) => {
@@ -32,6 +33,8 @@ const EditPost = ({ visible, onClose, caption, image, postId }) => {
 
         if (result?.status === 200) {
             setSuccess("Your post was successfully updated.");
+        } else {
+            setSuccess("There was problem updating your post.");
         }
     };
 
@@ -42,10 +45,6 @@ const EditPost = ({ visible, onClose, caption, image, postId }) => {
                 onClose();
             }, 2000);
     }, [success, onClose]);
-
-    useEffect(() => {
-        if (error) setSuccess("There was problem updating your post.");
-    }, [error]);
 
     if (!visible) return null;
 

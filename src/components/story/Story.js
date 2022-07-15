@@ -103,7 +103,7 @@ const Story = () => {
                                 <Loading height={30} width={30} />
                             </LoadingContainer>
                         ) : (
-                            <img src={user.profileImg} alt="new story" />
+                            <img src={user.profileImg} alt="story" />
                         )}
                         <IconContainer>
                             <AiOutlinePlus id="plus-icon" />
@@ -253,12 +253,13 @@ const Image = styled.img`
 
 const Name = styled.p`
     text-transform: lowercase;
-    width: 70px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
     p {
+        width: 70px;
         font-size: 13px;
         text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 `;
 
