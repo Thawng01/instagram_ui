@@ -9,7 +9,7 @@ import Loading from "../Loadings/Loading";
 import Error from "../errors/Error";
 import { device } from "../../breakpoints";
 
-const Modal = ({ visible, onModalClose }) => {
+const Modal = ({ visible, onModalClose, onSuccess }) => {
     const [image, setImage] = useState("");
     const [isConfirmed, setIsConfirmed] = useState(false);
 
@@ -59,6 +59,7 @@ const Modal = ({ visible, onModalClose }) => {
         if (res?.status === 200) {
             setImage("");
             onModalClose();
+            onSuccess("Your story was successfully posted.");
         }
     };
 
@@ -184,6 +185,7 @@ const Save = styled.button`
     border: transparent;
     margin-left: 10px;
     color: var(--primary);
+    font-size: var(--textSize);
 
     visibility: ${(prop) => (prop.visible ? "visible" : "hidden")};
 `;

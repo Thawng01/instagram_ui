@@ -8,7 +8,15 @@ import useApi from "../../hook/useApi";
 import EditPost from "../createpost/EditPost";
 import "./modal.css";
 
-const Modal = ({ visible, onHide, userId, postId, image, caption }) => {
+const Modal = ({
+    visible,
+    onHide,
+    userId,
+    postId,
+    image,
+    caption,
+    onSuccess,
+}) => {
     const [deleted, setDeleted] = useState(false);
     const [edit, setEdit] = useState(false);
     const id = useToken();
@@ -19,7 +27,12 @@ const Modal = ({ visible, onHide, userId, postId, image, caption }) => {
     const loggedUser = id === userId ? true : false;
 
     const handleDelete = async () => {
-        await postApi.request(userId, postId);
+        const result = await postApi.request(userId, postId);
+        if (result?.status === 200) {
+            onSuccess("Your post was successfully deleted.");
+        } else {
+            onSuccess("There was problem deleting your post.");
+        }
         setDeleted(false);
         onHide();
     };
@@ -86,7 +99,9 @@ const Modal = ({ visible, onHide, userId, postId, image, caption }) => {
                     <p className="item">Share to...</p>
                     <p className="item">Copy link</p>
                     <p className="item">Embed</p>
-                    <p className="item">Cancel</p>
+                    <p className="item" onClick={onHide}>
+                        Cancel
+                    </p>
                 </motion.div>
             </div>
         </>

@@ -12,7 +12,7 @@ const Follow = ({ follwer, following, post, userId }) => {
             <Centered>
                 <div className="containers">
                     <span className="number">{post?.length}</span>
-                    <span>posts</span>
+                    <span>Posts</span>
                 </div>
                 <div
                     className="containers"
@@ -52,7 +52,6 @@ const Centered = styled.div`
     .number {
         font-weight: 700;
         margin-right: 5px;
-        text-align: center;
     }
 
     .containers {

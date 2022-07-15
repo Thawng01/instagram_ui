@@ -1,19 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 
+import "./edit-post.css";
 import Caption from "./Caption";
 import { editPost } from "../../api/post";
 import useApi from "../../hook/useApi";
-import "./edit-post.css";
 import useUser from "../../hook/useUser";
 import { device } from "../../breakpoints";
+import BottomMessage from "../errors/BottomMessage";
+import Loading from "../Loadings/Loading";
 
 const EditPost = ({ visible, onClose, caption, image, postId }) => {
     const [capt, setCapt] = useState(caption);
+    const [success, setSuccess] = useState("");
 
-    const postApi = useApi(editPost);
+    const { request, loading, error } = useApi(editPost);
     const { user } = useUser();
 
     const handleClick = (e) => {
@@ -25,14 +28,30 @@ const EditPost = ({ visible, onClose, caption, image, postId }) => {
     const handleCaptionChange = (e) => setCapt(e.target.value);
 
     const handleSubmit = async () => {
-        await postApi.request(postId, capt);
-        onClose();
+        const result = await request(postId, capt);
+
+        if (result?.status === 200) {
+            setSuccess("Your post was successfully updated.");
+        }
     };
+
+    useEffect(() => {
+        if (success)
+            setTimeout(() => {
+                setSuccess("");
+                onClose();
+            }, 2000);
+    }, [success, onClose]);
+
+    useEffect(() => {
+        if (error) setSuccess("There was problem updating your post.");
+    }, [error]);
 
     if (!visible) return null;
 
     return (
         <Container id="edit-container" onClick={handleClick}>
+            <BottomMessage message={success} />
             <IoClose id="close-icon" onClick={onClose} />
             <motion.div
                 className="edit-post-box"
@@ -44,9 +63,13 @@ const EditPost = ({ visible, onClose, caption, image, postId }) => {
                         Cancel
                     </span>
                     <span id="centered">Edit info</span>
-                    <span id="right" onClick={handleSubmit}>
-                        Done
-                    </span>
+                    {loading ? (
+                        <Loading height={20} width={20} />
+                    ) : (
+                        <span id="right" onClick={handleSubmit}>
+                            Done
+                        </span>
+                    )}
                 </Header>
 
                 <Content>

@@ -9,7 +9,7 @@ const PostItem = ({ item, posts }) => {
     const navigate = useNavigate();
     return (
         <PostContainer>
-            <img src={item.image[0]} alt="post" />
+            <img src={item?.image[0]} alt="post" />
             <div
                 className="overlay"
                 onClick={() =>
@@ -19,7 +19,7 @@ const PostItem = ({ item, posts }) => {
                 }
             >
                 <IoChatbubbleSharp id="icon" />
-                <span>{item.comments.length}</span>
+                <span>{item?.comments?.length}</span>
             </div>
         </PostContainer>
     );

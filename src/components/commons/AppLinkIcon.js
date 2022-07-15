@@ -4,7 +4,7 @@ const AppLinkIcon = () => {
     return (
         <ApplinkContainer>
             <Appimage
-                src="https://www.instagram.com/static/images/appstore-i…l-badges/badge_ios_french-fr.png/485fcccb52dc.png"
+                src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_french-fr.png/485fcccb52dc.png"
                 alt="apple"
             />
             <Appimage

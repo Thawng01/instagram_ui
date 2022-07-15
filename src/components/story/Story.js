@@ -12,6 +12,7 @@ import { Flex } from "../../styles/Flex.styles";
 import Loading from "../Loadings/Loading";
 import Error from "../errors/Error";
 import Modal from "./Modal";
+import BottomMessage from "../errors/BottomMessage";
 
 const Prev = styled(Button)`
     left: 10px;
@@ -31,6 +32,7 @@ const Story = () => {
     const [scrollIndex, setScrollIndex] = useState(0);
     const [containerWidth, setContainerWidth] = useState(0);
     const [visible, setVisible] = useState(false);
+    const [success, setSuccess] = useState("");
 
     const ref = useRef();
 
@@ -38,6 +40,8 @@ const Story = () => {
     const { user, loading } = useUser();
     const storyApi = useStory(id);
     const navigate = useNavigate();
+
+    if (success) setTimeout(() => setSuccess(""), 3000);
 
     useEffect(() => {
         setContainerWidth(ref?.current?.offsetWidth);
@@ -85,7 +89,12 @@ const Story = () => {
 
     return (
         <Container>
-            <Modal visible={visible} onModalClose={() => setVisible(false)} />
+            <Modal
+                visible={visible}
+                onModalClose={() => setVisible(false)}
+                onSuccess={setSuccess}
+            />
+            <BottomMessage message={success} />
             <InnerContainer ref={ref}>
                 <NewStory onClick={() => setVisible(true)}>
                     <NewStoryImage>

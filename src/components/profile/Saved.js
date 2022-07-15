@@ -27,6 +27,9 @@ const Saved = () => {
             </div>
         );
 
+    if (data?.length === 0)
+        return <p style={{ padding: "2rem" }}>No post saved.</p>;
+
     return (
         <Container>
             {id === state ? (

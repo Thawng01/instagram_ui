@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 
 import Modal from "../feed/Modal";
 import { useNavigate } from "react-router-dom";
+import BottomMessage from "../errors/BottomMessage";
 
 const UserImage = ({
     height = 40,
@@ -17,13 +18,19 @@ const UserImage = ({
     fullname,
 }) => {
     const [showModal, setShowModal] = useState(false);
+    const [success, setSuccess] = useState("");
 
     const handleShowModal = () => setShowModal(!showModal);
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (success) setTimeout(() => setSuccess(""), 3000);
+    }, [success]);
+
     return (
         <>
+            <BottomMessage message={success} />
             <Modal
                 visible={showModal}
                 onHide={() => setShowModal(false)}
@@ -31,6 +38,7 @@ const UserImage = ({
                 postId={info?._id}
                 image={info?.image}
                 caption={info?.caption}
+                onSuccess={setSuccess}
             />
             <Container>
                 <UserInfoContainer>
