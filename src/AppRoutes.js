@@ -18,7 +18,7 @@ import Profile from "./pages/Profile";
 import Explore from "./pages/Explore";
 import Search from "./pages/Search";
 import Comments from "./pages/Comments";
-import CreatePost from "./components/createpost/CreatePost";
+import CreatePost from "./pages/create/CreatePost";
 import Details from "./pages/create/Details";
 import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
