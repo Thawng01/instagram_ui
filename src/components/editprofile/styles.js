@@ -25,14 +25,13 @@ export const ItemContainer = styled.div`
 
 export const ImgNameContainer = styled.div`
     display: flex;
-    align-items: center;
     margin-bottom: 15px;
 `;
 
 export const Left = styled.div`
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 10px;
+    padding-top: 5px;
 
     h4 {
         font-weight: 500;
