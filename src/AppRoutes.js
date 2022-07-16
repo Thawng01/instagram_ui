@@ -14,21 +14,19 @@ import Confirm from "./components/auth/Confirm";
 import ViewStory from "./components/story/ViewStory";
 import RequiredRoute from "./pages/RequiredRoute";
 import Layout from "./pages/Layout";
+import Profile from "./pages/Profile";
+import Explore from "./pages/Explore";
+import Search from "./pages/Search";
+import Comments from "./pages/Comments";
+import CreatePost from "./components/createpost/CreatePost";
+import Details from "./pages/create/Details";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
+import EditProfile from "./pages/EditProfile";
+import People from "./components/explore/People";
+import CardContainer from "./components/explore/CardContainer";
 
 const Home = React.lazy(() => import("./pages/Home"));
-const Profile = React.lazy(() => import("./pages/Profile"));
-const Explore = React.lazy(() => import("./pages/Explore"));
-const Search = React.lazy(() => import("./pages/Search"));
-const Comments = React.lazy(() => import("./pages/Comments"));
-const CreatePost = React.lazy(() => import("./pages/create/CreatePost"));
-const Details = React.lazy(() => import("./pages/create/Details"));
-const Signup = React.lazy(() => import("./pages/auth/Signup"));
-const Login = React.lazy(() => import("./pages/auth/Login"));
-const EditProfile = React.lazy(() => import("./pages/EditProfile"));
-const People = React.lazy(() => import("./components/explore/People"));
-const CardContainer = React.lazy(() =>
-    import("./components/explore/CardContainer")
-);
 
 const AppRoutes = () => {
     return (

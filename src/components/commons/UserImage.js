@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoEllipsisHorizontal } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 import Modal from "../feed/Modal";
-import { useNavigate } from "react-router-dom";
 import BottomMessage from "../errors/BottomMessage";
 
 const UserImage = ({
@@ -94,7 +94,7 @@ const UsernameContainer = styled.div`
 `;
 
 const Username = styled.p`
-    font-weight: 600;
+    font-weight: 500;
     font-family: var(--font);
     font-size: var(--sTSize);
     cursor: pointer;

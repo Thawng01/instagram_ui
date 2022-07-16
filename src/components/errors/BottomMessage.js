@@ -19,7 +19,7 @@ const Container = styled.div`
     height: 45px;
     background-color: #404040;
     transition: all 400ms ease;
-    z-index: 9999;
+    z-index: 9990;
 
     p {
         color: #fff;
