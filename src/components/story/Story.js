@@ -14,20 +14,6 @@ import Error from "../errors/Error";
 import Modal from "./Modal";
 import BottomMessage from "../errors/BottomMessage";
 
-const Prev = styled(Button)`
-    left: 10px;
-    .btn-icon {
-        font-size: 20px;
-    }
-`;
-
-const Next = styled(Button)`
-    right: 10px;
-    .btn-icon {
-        font-size: 20px;
-    }
-`;
-
 const Story = () => {
     const [scrollIndex, setScrollIndex] = useState(0);
     const [containerWidth, setContainerWidth] = useState(0);
@@ -152,6 +138,20 @@ const Story = () => {
 };
 
 export default Story;
+
+const Prev = styled(Button)`
+    left: 10px;
+    .btn-icon {
+        font-size: 20px;
+    }
+`;
+
+const Next = styled(Button)`
+    right: 10px;
+    .btn-icon {
+        font-size: 20px;
+    }
+`;
 
 const Container = styled.div`
     height: 110px;

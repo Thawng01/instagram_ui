@@ -10,6 +10,7 @@ import { fetchUser } from "../../api/user";
 import Loading from "../Loadings/Loading";
 import useFetch from "../../hook/useFetch";
 import Tooltip from "./Tooltip";
+import useToken from "../../hook/useToken";
 
 const ProfileHeader = () => {
     const [visible, setVisible] = useState(false);
@@ -18,6 +19,7 @@ const ProfileHeader = () => {
     const editProfile = () => navigate("/accounts/edit");
 
     const { state } = useLocation();
+    const id = useToken();
     const { data, loading } = useFetch(fetchUser, state);
 
     if (loading)
@@ -43,9 +45,14 @@ const ProfileHeader = () => {
                 <ProfileDetailContainer>
                     <Top>
                         <Name>{data?.fullname.replace(" ", "")}</Name>
-                        <div className="hide-in-mobile" onClick={editProfile}>
-                            <ProfileEdit>Edit profile</ProfileEdit>
-                        </div>
+                        {id === state && (
+                            <div
+                                className="hide-in-mobile"
+                                onClick={editProfile}
+                            >
+                                <ProfileEdit>Edit profile</ProfileEdit>
+                            </div>
+                        )}
                         <div className="setting-icon-container">
                             <IoSettingsOutline
                                 className="setting-icon"
@@ -57,9 +64,11 @@ const ProfileHeader = () => {
                             />
                         </div>
                     </Top>
-                    <div className="show-in-mobile" onClick={editProfile}>
-                        <ProfileEdit>Edit profile</ProfileEdit>
-                    </div>
+                    {id === state && (
+                        <div className="show-in-mobile" onClick={editProfile}>
+                            <ProfileEdit>Edit profile</ProfileEdit>
+                        </div>
+                    )}
                     <div className="follow">
                         <Follow
                             userId={data?._id}

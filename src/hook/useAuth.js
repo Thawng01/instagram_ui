@@ -16,7 +16,6 @@ const useAuth = () => {
             let result;
             if (signup) {
                 result = await register(userInfo);
-                console.log(result);
 
                 navigate("/register/birth_date", { state: result.data });
             } else {
@@ -29,7 +28,6 @@ const useAuth = () => {
                 redirect(result);
             }
         } catch (error) {
-            console.log(error);
             setError(error?.response?.data);
         }
         setLoading(false);

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IoMail } from "react-icons/io5";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Button from "./Button";
@@ -17,6 +17,12 @@ const Confirm = () => {
     const { confirm, loading, error } = useAuth();
     const { state } = useLocation();
     useFetch(getCode, state.id);
+
+    useEffect(() => {
+        if (state.id) {
+            getCode(state.id);
+        }
+    }, [state.id]);
 
     const navigate = useNavigate();
 
@@ -84,7 +90,7 @@ const Container = styled.div`
 `;
 
 const Input = styled.input.attrs({ type: "text" })`
-    padding: 10px;
+    padding: 12px;
     width: 100%;
     background-color: #f9f9f9;
     border: 0.2px solid lightgray;

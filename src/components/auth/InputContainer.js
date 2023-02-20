@@ -13,13 +13,13 @@ export default InputContainer;
 
 const Inputs = styled.div`
     border: 0.5px solid lightgray;
-    margin-top: 8px;
+    margin-top: 12px;
     border-radius: 4px;
     background-color: #fcfcfc;
     position: relative;
     display: flex;
     align-items: center;
-    height: 38px;
+    height: 40px;
     width: 100%;
 `;
 

@@ -13,7 +13,8 @@ const FollowTab = () => {
             {lists.map((item) => {
                 return (
                     <NavLink
-                        to={item.path}
+                        to={{ pathname: item.path }}
+                        state={{}}
                         key={item.id}
                         className="tab_link"
                         style={({ isActive }) => {

@@ -177,6 +177,7 @@ const Cancel = styled.button`
     background-color: #fff;
     border: transparent;
     color: red;
+    cursor: pointer;
 `;
 
 const Save = styled.button`
@@ -184,6 +185,7 @@ const Save = styled.button`
     background-color: #fff;
     border: transparent;
     margin-left: 10px;
+    cursor: pointer;
     color: var(--primary);
     font-size: var(--textSize);
 

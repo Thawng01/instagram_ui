@@ -25,8 +25,8 @@ export default Button;
 
 const Container = styled.button`
     width: 100%;
-    height: 35px;
-    margin-top: 10px;
+    height: 40px;
+    margin-top: 12px;
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: var(--secondary);
