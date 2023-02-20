@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
 
-const socket = io("http://192.168.43.240:9000");
+const socket = io("https://instagram-clone-bs7i.onrender.com");
 
 export default socket;
