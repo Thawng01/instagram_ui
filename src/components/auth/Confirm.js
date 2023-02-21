@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IoMail } from "react-icons/io5";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Button from "./Button";
