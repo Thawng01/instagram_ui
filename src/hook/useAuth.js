@@ -19,17 +19,12 @@ const useAuth = () => {
 
                 navigate("/register/birth_date", { state: result.data });
             } else {
-                try {
-                    result = await login(userInfo);
-                    if (!result.data.confirmed) {
-                        return navigate("/login/confirm", {
-                            state: result.data,
-                        });
-                    }
-                } catch (error) {
-                    setError(error?.response?.data);
+                result = await login(userInfo);
+                if (!result.data.confirmed) {
+                    return navigate("/login/confirm", {
+                        state: result.data,
+                    });
                 }
-
                 redirect(result);
             }
         } catch (error) {
